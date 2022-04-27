@@ -54,28 +54,21 @@ namespace SPbPUBOT
                 isOperator = db.Operators.Any(k => k.OperatorID == chatID);
             }
 
+            //await botClient.SendChatActionAsync( // анимация "Печатать", пока получается информация из бд
+            //        chatId: chatID,
+            //        chatAction: ChatAction.Typing
+            //        );
+
             if (isMainOperator)
             {
-                await botClient.SendChatActionAsync( // анимация "Печатать", пока получается информация из бд
-                    chatId: chatID,
-                    chatAction: ChatAction.Typing
-                    );
                 ReceivedFromMainOperator(botClient, message);
             }
             else if (isOperator)
             {
-                await botClient.SendChatActionAsync( // анимация "Печатать", пока получается информация из бд
-                    chatId: chatID,
-                    chatAction: ChatAction.Typing
-                    );
                 ReceivedFromOperator(botClient, message);
             }
             else
             {
-                await botClient.SendChatActionAsync( // анимация "Печатать", пока получается информация из бд
-                    chatId: chatID,
-                    chatAction: ChatAction.Typing
-                    );
                 ReceivedFromUser(botClient, message);
             }
         }
@@ -204,7 +197,7 @@ namespace SPbPUBOT
                                                     messageId: callbackQuery.Message.MessageId,
                                                     text: "Полет <a href='https://www.youtube.com/watch?v=6D_iskPXBno'>над кампусом #ПолитехПетра</a>",
                                                     replyMarkup: Keyboards.backKeyboard,
-                                                    parseMode:ParseMode.Html
+                                                    parseMode: ParseMode.Html
                                                     );
                                             }
                                             break;
@@ -281,7 +274,7 @@ namespace SPbPUBOT
                                             break;
                                         case "почему?":
                                             {
-                                                
+
                                             }
                                             break;
                                     }
@@ -796,7 +789,29 @@ namespace SPbPUBOT
                     break;
                 case "студент":
                     {
-                       //сделать 
+                        //сделать 
+                    }
+                    break;
+                case "глоператор":
+                    {
+                        switch (partsQuery[1])
+                        {
+                            case "удалить":
+                                {
+                                    long operID = long.Parse(callbackQuery.Message.Text.Split("Оператор")[0].Split(" ")[1]);
+                                    using (ApplicationContext db = new ApplicationContext())
+                                    {
+                                        Operator oper = db.Operators.Find(operID);
+                                        db.Operators.Remove(oper);
+                                        await botClient.SendTextMessageAsync(
+                                            chatId: operID,
+                                            text: "Вы больше не являетесь оператором"
+                                            );
+                                        db.SaveChanges();
+                                    }
+                                }
+                                break;
+                        }
                     }
                     break;
                 case "назад":
@@ -918,7 +933,7 @@ namespace SPbPUBOT
                     {
                         await botClient.SendTextMessageAsync(
                             chatId: chatID,
-                            text: "Привет, главный оператор! \nСписок доступных команд только что открылся, будь острожнее и не добавляй кого попало",
+                            text: "Привет, главный оператор! \nСписок доступных команд только что открылся, будь острожнее и не добавляй кого попало)))",
                             replyMarkup: Keyboards.MainOperator.basicKeyboard
                             );
                     }
@@ -928,21 +943,105 @@ namespace SPbPUBOT
                     {
                         await botClient.SendTextMessageAsync(
                             chatId: chatID,
-                            text: "Введите имя пользователя в формате: @имя"
+                            text: "Введите id пользователя в формате: 'id:'"
                             );
                     }
                     break;
 
                 case "список операторов":
                     {
-
+                        using (ApplicationContext db = new ApplicationContext())
+                        {
+                            var operatorsList = db.Operators.Where(m => m.isMain == false);
+                            if (operatorsList.Count() == 0)
+                            {
+                                await botClient.SendTextMessageAsync(
+                                    chatId: chatID,
+                                    text: "Нет ни одного неосновного оператора"
+                                    );
+                            }
+                            else
+                            {
+                                foreach (var oper in operatorsList)
+                                {
+                                    await botClient.SendTextMessageAsync(
+                                        chatId: chatID,
+                                        text: "ID " + oper.OperatorID + "\n" +
+                                        "Оператор " + oper.UserName,
+                                        replyMarkup: Keyboards.MainOperator.deleteKeyboard
+                                        );
+                                }
+                            }
+                        }
                     }
                     break;
 
                 default:
                     {
-                        if (message.Text[0] == '@')
+                        if (message.Text.Substring(0, 3) == "id:")
                         {
+                            Operator oper;
+                            long userID;
+                            bool flag = long.TryParse(message.Text.Substring(3), out userID);
+                            if (!flag)
+                            {
+                                await botClient.SendTextMessageAsync(
+                                    chatId: chatID,
+                                    text: "Неправильный формат ID пользователя"
+                                    );
+                                break;
+                            }
+                            using (ApplicationContext db = new ApplicationContext())
+                            {
+                                if (db.Operators.FirstOrDefault(k => k.OperatorID == userID) == null)
+                                {
+                                    if (db.Users.FirstOrDefault(k => k.UserID == userID) == null)
+                                    {
+                                        db.Operators.Add(new Operator()
+                                        {
+                                            OperatorID = userID,
+                                            isMain = false
+                                        });
+                                    }
+                                    else
+                                    {
+                                        User user = db.Users.Find(userID);
+                                        db.Users.Remove(user);
+                                        db.Operators.Add(new Operator()
+                                        {
+                                            OperatorID = userID,
+                                            FirstName = user.FirstName,
+                                            isMain = false,
+                                            SecondName = user.SecondName,
+                                            UserName = user.UserName
+                                        });
+                                        await botClient.SendTextMessageAsync(
+                                            chatId: userID,
+                                            text: "Поздравляем, теперь Вы являетесь оператором!\n\n" +
+                                            "Пожалуйста, очистите историю сообщений в данном канале для корректной работы бота"
+                                            );
+                                    }
+                                    await botClient.SendTextMessageAsync(
+                                        chatId: chatID,
+                                        text: "Оператор добавлен"
+                                        );
+                                    db.SaveChanges();
+                                }
+                                else
+                                {
+                                    await botClient.SendTextMessageAsync(
+                                        chatId: chatID,
+                                        text: "Данный пользователь уже является оператором"
+                                        );
+                                }
+                            }
+                        }
+                        else
+                        {
+                            await botClient.DeleteMessageAsync(
+                                chatId: chatID,
+                                messageId: message.MessageId
+                                );
                         }
                     }
                     break;
@@ -964,6 +1063,15 @@ namespace SPbPUBOT
                 {
                     case "/start":
                         {
+                            using (ApplicationContext db = new ApplicationContext())
+                            {
+                                if (db.Operators.Find(chatsOperatorID).UserName == null)
+                                {
+                                    db.Operators.Find(chatsOperatorID).UserName = message.From.Username;
+                                    db.Operators.Find(chatsOperatorID).FirstName = message.From.FirstName;
+                                    db.Operators.Find(chatsOperatorID).SecondName = message.From.LastName;
+                                }
+                            }
                             await botClient.DeleteMessageAsync(
                                 chatId: chatsOperatorID,
                                 messageId: message.MessageId
@@ -1009,7 +1117,7 @@ namespace SPbPUBOT
                                         );
                                 }
                             }
-                            
+
                         }
                         break;
                 }
@@ -1087,7 +1195,7 @@ namespace SPbPUBOT
                 }
             }
 
-            if (user.operatorID != null && user.operatorID !=- 1)
+            if (user.operatorID != null && user.operatorID != -1)
             {
                 switch (message.Text.ToLower())
                 {
@@ -1108,9 +1216,10 @@ namespace SPbPUBOT
                                 await botClient.SendTextMessageAsync(
                                     chatId: chatsUserID,
                                     text: "Диалог закончен",
-                                    replyMarkup: new ReplyKeyboardRemove() { 
-                                            Selective = true
-                                        }
+                                    replyMarkup: new ReplyKeyboardRemove()
+                                    {
+                                        Selective = true
+                                    }
                                     );
                             }
                         }
@@ -1141,11 +1250,17 @@ namespace SPbPUBOT
                                 text: "Привет! 🤖\n\n" +
                                 "Я твой чат-бот для связи с Политехническим университетом."
                                 );
-                            await botClient.SendTextMessageAsync(
+                            var messageMenu = await botClient.SendTextMessageAsync(
                                 chatId: chatsUserID,
                                 text: "Выбери кем ты являешься",
                                 replyMarkup: Keyboards.User.chooseKeyboard
                                 );
+
+                            using (ApplicationContext db = new ApplicationContext())
+                            {
+                                db.Users.Find(user.UserID).messageMenuID = messageMenu.MessageId;
+                                db.SaveChanges();
+                            }
                         }
                         break;
                     default:

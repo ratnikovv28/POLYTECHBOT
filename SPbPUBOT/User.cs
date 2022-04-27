@@ -15,5 +15,7 @@ namespace SPbPUBOT
         public string UserName { get; set; }
 
         public long? operatorID { get; set; }
+
+        public long? messageMenuID { get; set; }
     }
 }

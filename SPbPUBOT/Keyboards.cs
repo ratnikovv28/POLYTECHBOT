@@ -7,13 +7,22 @@ namespace SPbPUBOT
         public static class MainOperator
         {
             public static ReplyKeyboardMarkup basicKeyboard = new ReplyKeyboardMarkup(new[]
-        {
-            new KeyboardButton[]{ "Добавить нового оператора" },
-            new KeyboardButton[]{ "Список операторов" }
-        })
+            {
+                new KeyboardButton[]{ "Добавить нового оператора" },
+                new KeyboardButton[]{ "Список операторов" }
+            })
             {
                 ResizeKeyboard = true
             };
+
+            public static InlineKeyboardMarkup deleteKeyboard = new(
+                new[]
+                {
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("Удалить", "глоператор|удалить"),
+                    },
+            });
         }
 
         public static class Operator
