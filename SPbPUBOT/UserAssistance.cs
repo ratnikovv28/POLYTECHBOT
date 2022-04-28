@@ -10,8 +10,6 @@ namespace SPbPUBOT
 
         public string Username { get; set; }
 
-        public long? operatorID { get; set; }
-
-        public int messageMenuID { get; set; }
+        public long? OperatorID { get; set; }
     }
 }

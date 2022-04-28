@@ -741,18 +741,17 @@ namespace SPbPUBOT
                                                         break;
                                                     case "вызов":
                                                         {
-                                                            bool isWithOperator;
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                isWithOperator = db.UserAssistance.Any(k => k.UserID == callbackQuery.From.Id && k.operatorID == null);
-                                                                if (isWithOperator)
+                                                                if (db.UserAssistance.FirstOrDefault(k => k.UserID == callbackQuery.Message.Chat.Id) == null)
                                                                 {
-                                                                    var users = db.Users.Where(k => k.UserID == callbackQuery.From.Id);
-                                                                    foreach (var user in users)
+                                                                    db.UserAssistance.Add(new UserAssistance()
                                                                     {
-                                                                        user.operatorID = -1;
-                                                                    }
+                                                                        UserID = callbackQuery.Message.Chat.Id,
+                                                                        Username = callbackQuery.From.Username
+                                                                    });
                                                                     db.SaveChanges();
+
                                                                     await botClient.SendTextMessageAsync(
                                                                         chatId: callbackQuery.From.Id,
                                                                         text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора"
@@ -803,6 +802,12 @@ namespace SPbPUBOT
                                     {
                                         Operator oper = db.Operators.Find(operID);
                                         db.Operators.Remove(oper);
+
+                                        await botClient.SendTextMessageAsync(
+                                            chatId: callbackQuery.From.Id,
+                                            text: $"Оператор{callbackQuery.Message.Text.Split("Оператор")[1]} удален"
+                                            );
+
                                         await botClient.SendTextMessageAsync(
                                             chatId: operID,
                                             text: "Вы больше не являетесь оператором"
@@ -943,7 +948,8 @@ namespace SPbPUBOT
                     {
                         await botClient.SendTextMessageAsync(
                             chatId: chatID,
-                            text: "Введите id пользователя в формате: 'id:'"
+                            text: "Введите id пользователя в формате:\n" +
+                            "'id:id_пользователя'"
                             );
                     }
                     break;
@@ -1007,6 +1013,13 @@ namespace SPbPUBOT
                                     {
                                         User user = db.Users.Find(userID);
                                         db.Users.Remove(user);
+
+                                        if(db.UserAssistance.Find(userID) != null)
+                                        {
+                                            UserAssistance userForHelp = db.UserAssistance.Find(userID);
+                                            db.UserAssistance.Remove(userForHelp);
+                                        }
+
                                         db.Operators.Add(new Operator()
                                         {
                                             OperatorID = userID,
@@ -1055,7 +1068,7 @@ namespace SPbPUBOT
             {
                 oper = db.Operators.Find(chatsOperatorID);
             }
-            if (oper.userID == null)
+            if (oper.UserID == null)
             {
                 switch (message.Text.ToLower())
                 {
@@ -1067,7 +1080,9 @@ namespace SPbPUBOT
                                 {
                                     db.Operators.Find(chatsOperatorID).Username = message.From.Username;
                                 }
+                                db.SaveChanges();
                             }
+
                             await botClient.DeleteMessageAsync(
                                 chatId: chatsOperatorID,
                                 messageId: message.MessageId
@@ -1082,14 +1097,14 @@ namespace SPbPUBOT
                         break;
                     case "помочь":
                         {
-                            User userForHelp;
+                            UserAssistance userForHelp;
                             using (ApplicationContext db = new ApplicationContext())
                             {
-                                userForHelp = db.Users.FirstOrDefault(k => k.operatorID == -1);
+                                userForHelp = db.UserAssistance.FirstOrDefault(k => k.OperatorID == null);
                                 if (userForHelp != null)
                                 {
-                                    userForHelp.operatorID = chatsOperatorID; // меняем у пользователя operatorID на того, кто сейчас готов помочь
-                                    db.Operators.Find(chatsOperatorID).userID = userForHelp.UserID; // оператору ставим айди пользователя, которому он помогает
+                                    userForHelp.OperatorID = chatsOperatorID; // меняем у пользователя operatorID на того, кто сейчас готов помочь
+                                    db.Operators.Find(chatsOperatorID).UserID = userForHelp.UserID; // оператору ставим айди пользователя, которому он помогает
                                     db.SaveChanges();
 
                                     await botClient.SendTextMessageAsync(
@@ -1103,7 +1118,6 @@ namespace SPbPUBOT
                                         text: "К вам подключился оператор",
                                         replyMarkup: Keyboards.User.whileChattingKeyboard
                                         );
-
                                 }
                                 else
                                 {
@@ -1126,10 +1140,11 @@ namespace SPbPUBOT
                         {
                             using (ApplicationContext db = new ApplicationContext())
                             {
-                                db.Users.Find(oper.userID).operatorID = null;
+                                UserAssistance user = db.UserAssistance.Find(oper.UserID);
+                                db.UserAssistance.Remove(user);
 
                                 await botClient.SendTextMessageAsync(
-                                    chatId: oper.userID,
+                                    chatId: oper.UserID,
                                     text: "Оператор окончил диалог",
                                     replyMarkup: new ReplyKeyboardRemove()
                                     {
@@ -1138,20 +1153,19 @@ namespace SPbPUBOT
                                     );
 
                                 await botClient.DeleteMessageAsync(
-                                    chatId: oper.userID,
-                                    messageId: db.Users.Find(oper.userID).messageMenuID
+                                    chatId: oper.UserID,
+                                    messageId: db.Users.Find(oper.UserID).messageMenuID
                                     );
 
                                 var messageMenu = await botClient.SendTextMessageAsync(
-                                    chatId: oper.userID,
+                                    chatId: oper.UserID,
                                     text: "Выбери кем ты являешься",
                                     replyMarkup: Keyboards.User.chooseKeyboard
                                     );
 
-                                db.Users.Find(oper.userID).messageMenuID = messageMenu.MessageId;
-                                db.SaveChanges();
+                                db.Users.Find(oper.UserID).messageMenuID = messageMenu.MessageId;
 
-                                db.Operators.Find(chatsOperatorID).userID = null;
+                                db.Operators.Find(chatsOperatorID).UserID = null;
                                 db.SaveChanges();
 
                                 await botClient.SendTextMessageAsync(
@@ -1165,7 +1179,7 @@ namespace SPbPUBOT
                     default:
                         {
                             await botClient.SendTextMessageAsync(
-                                chatId: oper.userID,
+                                chatId: oper.UserID,
                                 text: message.Text
                                 );
                         }
@@ -1178,6 +1192,8 @@ namespace SPbPUBOT
         {
             long chatsUserID = message.Chat.Id;
             User user;
+            UserAssistance userInChat;
+
 
             await botClient.SendChatActionAsync( // анимация "Печатать", пока получается информация из бд
                     chatId: chatsUserID,
@@ -1186,13 +1202,13 @@ namespace SPbPUBOT
 
             using (ApplicationContext db = new ApplicationContext())
             {
+                userInChat = db.UserAssistance.FirstOrDefault(k => k.UserID == chatsUserID);
                 if (!db.Users.Any(k => k.UserID == chatsUserID))
                 {
                     user = new User() // добавление
                     {
                         UserID = chatsUserID,
-                        Username = message.From.Username,
-                        operatorID = null
+                        Username = message.From.Username
                     };
                     db.Users.Add(user);
                     db.SaveChanges(); // сохранение изменений
@@ -1203,7 +1219,7 @@ namespace SPbPUBOT
                 }
             }
 
-            if (user.operatorID != null && user.operatorID != -1)
+            if (userInChat != null)
             {
                 switch (message.Text.ToLower())
                 {
@@ -1211,16 +1227,15 @@ namespace SPbPUBOT
                         {
                             using (ApplicationContext db = new ApplicationContext())
                             {
-                                db.Operators.Find(user.operatorID).userID = null;
+                                db.Operators.Find(userInChat.OperatorID).UserID = null;
 
                                 await botClient.SendTextMessageAsync(
-                                    chatId: user.operatorID,
+                                    chatId: userInChat.OperatorID,
                                     text: "Пользователь окончил диалог",
                                     replyMarkup: Keyboards.Operator.mainKeyboard
                                     );
 
-                                db.Users.Find(chatsUserID).operatorID = null;
-                                db.SaveChanges();
+                                db.UserAssistance.Remove(userInChat);
 
                                 await botClient.SendTextMessageAsync(
                                     chatId: chatsUserID,
@@ -1250,7 +1265,7 @@ namespace SPbPUBOT
                     default:
                         {
                             await botClient.SendTextMessageAsync(
-                                chatId: user.operatorID,
+                                chatId: userInChat.OperatorID,
                                 text: message.Text
                                 );
                         }

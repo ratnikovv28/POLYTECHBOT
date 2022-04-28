@@ -12,7 +12,7 @@ namespace SPbPUBOT
 
         public ApplicationContext()
         {
-            Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

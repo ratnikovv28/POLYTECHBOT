@@ -12,6 +12,6 @@ namespace SPbPUBOT
 
         public bool isMain { get; set; }
 
-        public long? userID { get; set; }
+        public long? UserID { get; set; }
     }
 }
