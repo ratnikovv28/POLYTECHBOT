@@ -8,11 +8,7 @@ namespace SPbPUBOT
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long OperatorID { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string SecondName { get; set; }
-
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         public bool isMain { get; set; }
 
