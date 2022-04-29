@@ -69,13 +69,14 @@ namespace SPbPUBOT
                     },
                 });
 
-            public static ReplyKeyboardMarkup whileChattingKeyboard = new ReplyKeyboardMarkup(new[]
-            {
-                new KeyboardButton[]{ "Закончить диалог" }
-            })
-            {
-                ResizeKeyboard = true
-            };
+            public static ReplyKeyboardMarkup whileChattingKeyboard = new ReplyKeyboardMarkup(
+                new[]
+                {
+                    new KeyboardButton[]{ "Закончить диалог" }
+                })
+                {
+                    ResizeKeyboard = true
+                };
 
             public static class Student
             {
@@ -104,7 +105,7 @@ namespace SPbPUBOT
                 {
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("О поступлении", "абитур|поступ"),
+                        InlineKeyboardButton.WithCallbackData("О поступлении", "абитур|поступ|поступ"),
                     },
                     new[]
                     {
@@ -116,15 +117,11 @@ namespace SPbPUBOT
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Мероприятия и курсы для абитуриентов", "абитур|мерикурсы|мерикурсы"),
+                        InlineKeyboardButton.WithCallbackData("Мероприятия и курсы для абитуриентов", "абитур|курсы|курсы"),
                     },
                     new[]
                     {
                         InlineKeyboardButton.WithCallbackData("Часто задаваемые вопросы", "абитур|чзв|чзв"),
-                    },
-                    new[]
-                    {
-                        InlineKeyboardButton.WithCallbackData("Секретная кнопка", "абитур|учплан"),
                     },
                     new[]
                     {
@@ -276,11 +273,7 @@ namespace SPbPUBOT
                         },
                         new[]
                         {
-                            InlineKeyboardButton.WithCallbackData("Почему политех?", "абитур|знаком|почему?"),
-                        },
-                        new[]
-                        {
-                            InlineKeyboardButton.WithCallbackData("Чат с представителем поддержки", "абитур|знаком"),
+                            InlineKeyboardButton.WithCallbackData("Почему политех?", "абитур|знаком|поч|поч"),
                         },
                         new[]
                         {
@@ -371,6 +364,40 @@ namespace SPbPUBOT
                              InlineKeyboardButton.WithCallbackData("Назад", "назад"),
                         },
                     });
+
+                    public static InlineKeyboardMarkup whyPolytechKeyboard = new(
+                       new[]
+                       {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Университет в цифрах", "абитур|знаком|поч|цифры"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Полёт над кампусом СПбПУ", "абитур|знаком|поч|полет"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Онлайн-ресурсы Политеха", "абитур|знаком|поч|ресурсы"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Виртуальная экскурсия", "абитур|знаком|поч|экскурс"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "назад"),
+                            },
+                       });
+
+                    public static InlineKeyboardMarkup backKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|знаком|поч|назад"),
+                            },
+                        });
                 }
 
                 public static class Questions
@@ -540,10 +567,6 @@ namespace SPbPUBOT
                         },
                         new[]
                         {
-                            InlineKeyboardButton.WithCallbackData("Иностарнным гражданам", "абитур|чзв|поступ|иностранцы"),
-                        },
-                        new[]
-                        {
                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|чзв|поступ|назад"),
                         },
                         });
@@ -619,33 +642,33 @@ namespace SPbPUBOT
                 public static class EventsCourse
                 {
                     public static InlineKeyboardMarkup basicKeyboard = new(
-                    new[]
-                    {
                         new[]
                         {
-                             InlineKeyboardButton.WithCallbackData("Подготовительные курсы", "абитур|мерикурсы|пк"),
-                        },
-                        new[]
-                        {
-                             InlineKeyboardButton.WithCallbackData("Образовательные мероприятия", "абитур|мерикурсы|ом"),
-                        },
-                        new[]
-                        {
-                             InlineKeyboardButton.WithCallbackData("Олимпиады", "абитур|мерикурсы|олимп"),
-                        },
-                        new[]
-                        {
-                             InlineKeyboardButton.WithCallbackData("Ближайшие события", "абитур|мерикурсы|соб"),
-                        },
-                        new[]
-                        {
-                             InlineKeyboardButton.WithCallbackData("Назад", "назад"),
-                        },
-                    });
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Подготовительные курсы", "абитур|курсы|пк|пк"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Образовательные мероприятия", "абитур|курсы|ом|ом"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Олимпиады", "абитур|курсы|олимп|олимп"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Ближайшие события", "абитур|курсы|соб"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "назад"),
+                            },
+                        });
 
                     public static InlineKeyboardMarkup closeEventsKeyboard = new(
-                    new[]
-                    {
+                        new[]
+                        {
                         new[]
                         {
                              InlineKeyboardButton.WithUrl("Перейти на сайт", "https://school.spbstu.ru/"),
@@ -654,7 +677,479 @@ namespace SPbPUBOT
                         {
                              InlineKeyboardButton.WithCallbackData("Назад", "назад"),
                         },
-                    });
+                        });
+
+                    public static class TrainingCourses
+                    {
+                        public static InlineKeyboardMarkup trainingCoursesKeyboard = new(
+                        new[]
+                        {
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Школьникам 1-9 класса", "абитур|курсы|пк|1-9"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Школьникам 10 класса", "абитур|курсы|пк|10"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Школьникам 11 класса", "абитур|курсы|пк|11|11"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Выпускникам колледжей", "абитур|курсы|пк|колледж"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Поступающим в магистратуру", "абитур|курсы|пк|мага"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|назад"),
+                        },
+                        });
+
+                        public static InlineKeyboardMarkup for1to9Keyboard = new(
+                        new[]
+                        {
+                        new[]
+                        {
+                             InlineKeyboardButton.WithUrl("Академия информатики для школьников", "https://www.avalon.ru/SchoolAcademy/"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithUrl("Фаблаб политех", "https://fablab.spbstu.ru/"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithUrl("Дом ученых в Лесном", "https://vk.com/sc.club"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|пк|назад"),
+                        },
+                        });
+
+                        public static InlineKeyboardMarkup for10CollegeKeyboard = new(
+                        new[]
+                        {
+                        new[]
+                        {
+                             InlineKeyboardButton.WithUrl("Запись на курсы", "https://courses.spbstu.ru/"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|пк|назад"),
+                        },
+                        });
+
+                        public static InlineKeyboardMarkup entryFor11Keyboard = new(
+                        new[]
+                        {
+                        new[]
+                        {
+                             InlineKeyboardButton.WithUrl("Запись на курсы", "https://courses.spbstu.ru/"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|пк|11|назад"),
+                        },
+                        });
+
+                        public static InlineKeyboardMarkup entryForMagKeyboard = new(
+                        new[]
+                        {
+                        new[]
+                        {
+                             InlineKeyboardButton.WithUrl("Подробнее и запись", "https://ice.spbstu.ru/podgotovitelnye_kursy/"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|пк|назад"),
+                        },
+                        });
+
+                        public static InlineKeyboardMarkup entryForeighLangKeyboard = new(
+                        new[]
+                        {
+                        new[]
+                        {
+                             InlineKeyboardButton.WithUrl("Запись на курсы", "https://lingua.spbstu.ru/#languages"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|пк|11|назад"),
+                        },
+                        });
+
+                        public static InlineKeyboardMarkup entryTrainCoursesKeyboard = new(
+                        new[]
+                        {
+                        new[]
+                        {
+                             InlineKeyboardButton.WithUrl("Запись на курсы", "https://design.spbstu.ru/podgotovitelnye_kursy/"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|пк|11|назад"),
+                        },
+                        });
+
+                        public static InlineKeyboardMarkup for11Keyboard = new(
+                        new[]
+                        {
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Основные предметы", "абитур|курсы|пк|11|осн"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Иностранные языки", "абитур|курсы|пк|11|иняз"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Рисунок/Живопись/Композиция", "абитур|курсы|пк|11|ржк"),
+                        },
+                        new[]
+                        {
+                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|пк|назад"),
+                        },
+                        });
+                    }
+
+                    public static class EducationalPrograms
+                    {
+                        public static InlineKeyboardMarkup educationalProgramsKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Инженерная лига Политеха", "абитур|курсы|ом|илп"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Летняя школа", "абитур|курсы|ом|лш"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Кейс-чемпионат 'Polycase'", "абитур|курсы|ом|polycase"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Фестиваль науки - дорога в Политех", "абитур|курсы|ом|двп"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|назад"),
+                            },
+                        });
+
+                        public static InlineKeyboardMarkup engineeringLeagueKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Участвовать", "https://vk.com/education_spbstu"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|ом|назад"),
+                            },
+                        });
+
+                        public static InlineKeyboardMarkup polycaseKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Участвовать", "https://vk.com/polycase"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|ом|назад"),
+                            },
+                        });
+
+                        public static InlineKeyboardMarkup summerSchoolKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Подробнее", "https://vk.com/education_spbstu"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Участвовать", "https://summer.spbstu.ru/"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|ом|назад"),
+                            },
+                        });
+
+                        public static InlineKeyboardMarkup scienceFestivalKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Участвовать", "https://vk.com/ibsb_spbstu"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|ом|назад"),
+                            },
+                        });
+                    }
+
+                    public static class Olympiad
+                    {
+                        public static InlineKeyboardMarkup olympiadKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("По предметам", "абитур|курсы|олимп|пред|пред"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("По названию", "абитур|курсы|олимп|назв|назв"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Я олимпиадник!", "абитур|курсы|олимп|я олимп|я олимп"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|назад"),
+                            },
+                        });
+
+                        public static InlineKeyboardMarkup subjectKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Физика", "абитур|курсы|олимп|пред|физ"),
+                                 InlineKeyboardButton.WithCallbackData("Математика", "абитур|курсы|олимп|пред|мат"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Информатика", "абитур|курсы|олимп|пред|инф"),
+                                 InlineKeyboardButton.WithCallbackData("Химия", "абитур|курсы|олимп|пред|хим"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Гуманитарные науки", "абитур|курсы|олимп|пред|гум"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|назад"),
+                            },
+                        });
+
+                        public static InlineKeyboardMarkup olympiadManKeyboard = new(
+                           new[]
+                           {
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithCallbackData("Поступление без вступительных испытаний", "абитур|курсы|олимп|я олимп|бви"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithCallbackData("Соответствие предметов олимпиад и направлений СПбПУ", "абитур|курсы|олимп|я олимп|соотв"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|назад"),
+                                },
+                           });
+
+                        public static InlineKeyboardMarkup titleKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("РСОШ", "абитур|курсы|олимп|назв|рсош"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Всеросс олимпиада школьников", "https://school.spbstu.ru/olympiads/vserossiyskaya_olimpiada_shkolnikov_po_fizike/"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Дает доп.баллы за победу", "https://school.spbstu.ru/olympiads/politehnicheskaya_olimpiada/"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|назад"),
+                            },
+                        });
+
+                        public static InlineKeyboardMarkup backKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|я олимп|назад"),
+                            },
+                        });
+
+                        public static InlineKeyboardMarkup rsochKeyboard = new(
+                        new[]
+                        {
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Отраслевая олимпиада Газпром", "https://school.spbstu.ru/olympiads/otraslevaya_olimpiada_shkolnikov_gazprom/"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Олимпиада НТИ", "https://school.spbstu.ru/olympiads/olimpiada_nacionalnoy_tehnologicheskoy_iniciativy/"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("ОММО", "https://school.spbstu.ru/olympiads/obedin_nnaya_mezghvuzovskaya_matematicheskaya_olimpiada_shkolnikov/"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Технокубок", "https://school.spbstu.ru/olympiads/olimpiada_shkolnikov_po_programmirovaniu_tehnokubok/"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Межрегиональная олимпиада им.Верченко", "https://school.spbstu.ru/olympiads/mezghregionalnaya_olimpiada_shkolnikov_im_i_ya_verchenko/"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithUrl("Всероссийская толстовская олимпиада", "https://tsput.ru/olympiad/entry_form/"),
+                            },
+                            new[]
+                            {
+                                 InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|назв|назад"),
+                            },
+                        });
+
+                        public static class Physics
+                        {
+                            public static InlineKeyboardMarkup physicsKeyboard = new(
+                            new[]
+                            {
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Всероссийская олимпиада школьников", "https://school.spbstu.ru/olympiads/vserossiyskaya_olimpiada_shkolnikov_po_fizike/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Отраслевая олимпиада Газпром", "https://school.spbstu.ru/olympiads/otraslevaya_olimpiada_shkolnikov_gazprom/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Политехническая олимпиада", "https://school.spbstu.ru/olympiads/politehnicheskaya_olimpiada/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Олимпиада НТИ", "https://school.spbstu.ru/olympiads/olimpiada_nacionalnoy_tehnologicheskoy_iniciativy/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|пред|назад"),
+                                },
+                            });
+                        }
+
+                        public static class Mathematics
+                        {
+                            public static InlineKeyboardMarkup mathematicsKeyboard = new(
+                            new[]
+                            {
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("ОММО", "https://school.spbstu.ru/olympiads/obedin_nnaya_mezghvuzovskaya_matematicheskaya_olimpiada_shkolnikov/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Межрегиональная олимпиада им.Верченко", "https://school.spbstu.ru/olympiads/mezghregionalnaya_olimpiada_shkolnikov_im_i_ya_verchenko/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Политехническая олимпиада", "https://school.spbstu.ru/olympiads/politehnicheskaya_olimpiada/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Отраслевая олимпиада Газпром", "https://school.spbstu.ru/olympiads/otraslevaya_olimpiada_shkolnikov_gazprom/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|пред|назад"),
+                                },
+                            });
+                        }
+
+                        public static class Informatics
+                        {
+                            public static InlineKeyboardMarkup informaticsKeyboard = new(
+                            new[]
+                            {
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Технокубок", "https://school.spbstu.ru/olympiads/olimpiada_shkolnikov_po_programmirovaniu_tehnokubok/"),
+                                     InlineKeyboardButton.WithUrl("Олимпиада НТИ", "https://school.spbstu.ru/olympiads/olimpiada_nacionalnoy_tehnologicheskoy_iniciativy/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Межрегиональная олимпиада им.Верченко", "https://school.spbstu.ru/olympiads/mezghregionalnaya_olimpiada_shkolnikov_im_i_ya_verchenko/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Политехническая олимпиада", "https://school.spbstu.ru/olympiads/politehnicheskaya_olimpiada/"),
+                                     InlineKeyboardButton.WithUrl("Мартовские КИТы", "http://hse.spbstu.ru/SchoolAcademy/Activities/Olympics/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Отраслевая олимпиада Газпром", "https://school.spbstu.ru/olympiads/otraslevaya_olimpiada_shkolnikov_gazprom/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|пред|назад"),
+                                },
+                            });
+                        }
+
+                        public static class Chemistry
+                        {
+                            public static InlineKeyboardMarkup chemistryKeyboard = new(
+                            new[]
+                            {
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Политехническая олимпиада", "https://school.spbstu.ru/olympiads/politehnicheskaya_olimpiada/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Отраслевая олимпиада Газпром", "https://school.spbstu.ru/olympiads/otraslevaya_olimpiada_shkolnikov_gazprom/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|пред|назад"),
+                                },
+                            });
+                        }
+
+                        public static class Humanitarian
+                        {
+                            public static InlineKeyboardMarkup humanitarianKeyboard = new(
+                            new[]
+                            {
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithUrl("Участвовать", "https://tsput.ru/olympiad/entry_form/"),
+                                },
+                                new[]
+                                {
+                                     InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|олимп|пред|назад"),
+                                },
+                            });
+                        }
+                    }
                 }
             }
         }

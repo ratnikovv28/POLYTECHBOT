@@ -7,6 +7,7 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using System.Linq;
 using Telegram.Bot.Types.ReplyMarkups;
+using Telegram.Bot.Types.InputFiles;
 
 namespace SPbPUBOT
 {
@@ -86,6 +87,7 @@ namespace SPbPUBOT
                         switch (partsQuery[1]) //выбор категории интересующей темы
                         {
                             case "абитур":
+                            case "назад":
                                 {
                                     await botClient.EditMessageTextAsync(
                                         chatId: callbackQuery.Message.Chat.Id,
@@ -97,12 +99,29 @@ namespace SPbPUBOT
                                 break;
                             case "поступ":
                                 {
-                                    await botClient.EditMessageTextAsync(
-                                        chatId: callbackQuery.Message.Chat.Id,
-                                        messageId: callbackQuery.Message.MessageId,
-                                        text: "Чтобы изучить вопрос более детально выбери категорию, к которой ты относишься",
-                                        replyMarkup: Keyboards.User.Enrollee.Admission.basicKeyboard
-                                        );
+                                    switch (partsQuery[2])
+                                    {
+                                        case "поступ":
+                                            {
+                                                await botClient.EditMessageTextAsync(
+                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                    messageId: callbackQuery.Message.MessageId,
+                                                    text: "Чтобы изучить вопрос более детально выбери категорию, к которой ты относишься",
+                                                    replyMarkup: Keyboards.User.Enrollee.Admission.basicKeyboard
+                                                    );
+                                            }
+                                            break;
+                                        case "":
+                                            {
+                                                await botClient.EditMessageTextAsync(
+                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                    messageId: callbackQuery.Message.MessageId,
+                                                    text: "Чтобы изучить вопрос более детально выбери категорию, к которой ты относишься ⬇️",
+                                                    replyMarkup: Keyboards.User.Enrollee.Admission.basicKeyboard
+                                                    );
+                                            }
+                                            break;
+                                    }
                                 }
                                 break;
                             case "выбратьпроф":
@@ -135,7 +154,10 @@ namespace SPbPUBOT
                                                         break;
                                                     case "буклет":
                                                         {
-                                                            //сделать
+                                                            await botClient.SendDocumentAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                document: new InputOnlineFile("https://docdro.id/hiMMYuF")
+                                                                );
                                                         }
                                                         break;
                                                 }
@@ -272,19 +294,88 @@ namespace SPbPUBOT
                                                     );
                                             }
                                             break;
-                                        case "почему?":
+                                        case "поч":
                                             {
-
+                                                switch (partsQuery[3])
+                                                {
+                                                    case "поч":
+                                                    case "назад":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Сейчас расскажем:",
+                                                                replyMarkup: Keyboards.User.Enrollee.AboutUniversity.whyPolytechKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "цифры":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Политехнический университет — это:\n" +
+                                                                "более 30 тысяч студентов\n" +
+                                                                "территория кампуса 120 га\n" +
+                                                                "18 корпусов общежитий\n" +
+                                                                "70 направлений обучения\n" +
+                                                                "12 институтов\n" +
+                                                                "123 - летняя история\n" +
+                                                                "более 300 партнеров из числа промышленных компаний и вузов\n" +
+                                                                "около 50 студенческих объединений",
+                                                                replyMarkup: Keyboards.User.Enrollee.AboutUniversity.backKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "полет":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Пролететь по территории Политеха и увидеть кампус можно прямо сейчас. Лови <a href='https://youtu.be/6D_iskPXBno'>видео</a>!",
+                                                                replyMarkup: Keyboards.User.Enrollee.AboutUniversity.backKeyboard,
+                                                                parseMode: ParseMode.Html
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "ресурсы":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "— <a href='https://www.spbstu.ru/abit/bachelor/'>сайт СПбПУ с правилами поступления</a>\n" +
+                                                                "— <a href='https://vk.com/polytech_petra'>главная группа Политеха</a>\n" +
+                                                                "— <a href='https://vk.com/abit_spbstu'>группа абитуриентов Политеха</a>\n" +
+                                                                "— <a href='https://zen.yandex.ru/pokolenie'>блог Политеха на Яндексе.Дзене</a>\n" +
+                                                                "— <a href='https://t.me/polytech_petra'>телеграм - канал для политехников</a>",
+                                                                replyMarkup: Keyboards.User.Enrollee.AboutUniversity.backKeyboard,
+                                                                parseMode: ParseMode.Html
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "экскурс":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Посетить наш вуз можно не только очно, но и дистанционно - с помощью <a href='https://vt.spbstu.ru/gz/'>виртуального тура</a> по Главному учебному корпусу Политеха!",
+                                                                replyMarkup: Keyboards.User.Enrollee.AboutUniversity.backKeyboard,
+                                                                parseMode: ParseMode.Html
+                                                                );
+                                                        }
+                                                        break;
+                                                }
                                             }
                                             break;
                                     }
                                 }
                                 break;
-                            case "мерикурсы":
+                            case "курсы":
                                 {
                                     switch (partsQuery[2])
                                     {
-                                        case "мерикурсы":
+                                        case "курсы":
+                                        case "назад":
                                             {
                                                 await botClient.EditMessageTextAsync(
                                                     chatId: callbackQuery.Message.Chat.Id,
@@ -296,17 +387,366 @@ namespace SPbPUBOT
                                             break;
                                         case "пк":
                                             {
-                                                //сделать
+                                                switch (partsQuery[3])
+                                                {
+                                                    case "пк":
+                                                    case "назад":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Курсы какой категории вас интересуют?",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.trainingCoursesKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "1-9":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Для данной категории в Политехническом университете существует несколько различных подразделений",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.for1to9Keyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "10":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Курсы для 10 класса проводятся по следующим предметам в любой комбинации:\n" +
+                                                                "<b>Математика</b>\n" +
+                                                                "<b>Информатика</b>\n" +
+                                                                "<b>Физика</b>\n" +
+                                                                "Продолжительность - 7 месяцев, октябрь - май.\n" +
+                                                                "Время проведения занятий с 18:00 до 19 - 30 по будним дням, 2 академических часа по 1 предмету.\n" +
+                                                                "Подробнее о курсе и запись при переходе по кнопке",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.for10CollegeKeyboard,
+                                                                parseMode: ParseMode.Html
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "11":
+                                                        {
+                                                            switch (partsQuery[4])
+                                                            {
+                                                                case "11":
+                                                                case "назад":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Какие предметы вы будете сдавать?",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.for11Keyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "осн":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Курсы для 11 класса проводятся по следующим предметам в любой комбинации:\n" +
+                                                                            "<b>Математика</b>\n" +
+                                                                            "<b>Информатика</b>\n" +
+                                                                            "<b>Физика</b>\n" +
+                                                                            "<b>Химия</b>\n" +
+                                                                            "<b>Обществознание</b>\n" +
+                                                                            "<b>Биология</b>\n" +
+                                                                            "<b>История</b>\n" +
+                                                                            "<b>Русский язык</b>\n" +
+                                                                            "Продолжительность - 8 месяцев, с 13 сентября по 31 мая(русский язык: январь - февраль)\n" +
+                                                                            "Форма проведения занятий - очно - заочная(вечерние) или дистанционная на выбор\n" +
+                                                                            "Время проведения занятий с 18:00 до 21:15 по будним дням, 4 академических часа в неделю по каждому предмету\n" +
+                                                                            "Подробнее о курсе и запись при переходе по кнопке👇",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.entryFor11Keyboard,
+                                                                            parseMode: ParseMode.Html
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "иняз":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Подробная информация о курсах по иностранным языкам и запись по кнопке ниже👇",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.entryForeighLangKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "ржк":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Курсы для поступающих на направление 54.03.01 Дизайн.\n" +
+                                                                            "Продолжительность - 8 месяцев, с октября по май.\n" +
+                                                                            "Время проведения занятий с 18:00 до 21:00 по будним дням, один раз в неделю по 4 академических часа.\n" +
+                                                                            "Подробнее о курсах и запись👇",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.entryTrainCoursesKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+
+                                                            }
+                                                        }
+                                                        break;
+                                                    case "колледж":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Подготовительные курсы для абитуриентов, имеющих профессиональное образование и планирующих поступать по результатам вступительных испытаний, проводимых СПбПУ самостоятельно, позволяют ознакомиться со структурой теста и основными требованиями университета к ответам. Занятия ведут разработчики заданий.\n" +
+                                                                "Продолжительность - 3 недели, с 21 июня по 10 июля, ежедневно(кроме воскресенья).\n" +
+                                                                "Время проведения занятий с 18:00 до 21:15(суббота с 10:00 до 13:15).",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.for10CollegeKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "мага":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Курс разработан специально для выпускников бакалавриата и специалитета, желающих поступить в Магистратуру на направление 08.04.01 Строительство\n" +
+                                                                "Продолжительность - 1 месяц\n" +
+                                                                "Время записи: май – июнь\n" +
+                                                                "Период проведения: июнь – июль\n" +
+                                                                "Время проведения занятий с 18:30 до 21:00 по будним дням",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.for10CollegeKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                }
                                             }
                                             break;
                                         case "ом":
                                             {
-                                                //сделать
+                                                switch (partsQuery[3])
+                                                {
+                                                    case "ом":
+                                                    case "назад":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Мы активно приглашаем учащихся участвовать в образовательных интенсивах.\n" +
+                                                                "Такие интенсивы - возможность улучшить свои знания в одном из любимых предметов, познакомиться с единомышленниками, прочувствовать атмосферу университета, пообщаться с университетскими преподавателями, получить памятные подарки - а в случае победы, получить дополнительные баллы при поступлении!",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.EducationalPrograms.educationalProgramsKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "илп":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Инженерная лига Политеха — образовательный интенсив для школьников 9-11 классов, которые интересуются физикой, математикой и информатикой. Одна из основных целей мероприятия — полное погружение в профессиональную сферу. Открытые лекции и презентации, мастер-классы и воркшопы — это возможность для участников Инженерной лиги получить понимание отрасли, пообщаться с преподавателями и специалистами профессиональной сферы, а также найти команду единомышленников!",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.EducationalPrograms.engineeringLeagueKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "лш":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Летняя школа «Твой город-цифровой» - это образовательный интенсив, в рамках которого учащиеся 9-10 классов пробуют себя в качестве специалистов будущего, знакомятся с новыми разработками и технологиями Политехнического университета, участвуют в экскурсиях на ведущие предприятия и компании города, развивают свои компетенции через научно-инженерную и проектную деятельность. Немаловажное значение на Летней школе уделяется развитию soft-skills и профориентационной деятельности.",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.EducationalPrograms.summerSchoolKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "polycase":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Институт машиностроения, материалов и транспорта СПбПУ является постоянным организатором кейс-чемпионате «PolyCase 2021» для учащихся 9-11 классов.\n" +
+                                                                "PolyCase — уникальная возможность попробовать свои силы в решении реальных производственных задач, которые специально адаптированны для учеников среднего и средне - профессионального образования, а также познакомиться с одним из самых передовых университетов страны и получить ценные призы.",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.EducationalPrograms.polycaseKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "двп":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "«Фестиваль науки – Дорога в Политех» - это школьная научно-практическая конференция для учащихся 8-11 классов. На фестивале ты сможешь представить свою работу на судейство преподавателям Политехнического университета и реализовать себя как ученый.\n" +
+                                                                "На фестивале ты можешь представить свою работу в одно из следующих категорий:\n" +
+                                                                "Биология и медицина\n" +
+                                                                "Физика и медицинская физика\n" +
+                                                                "Химия и материаловедение",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.EducationalPrograms.polycaseKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                }
                                             }
                                             break;
                                         case "олимп":
                                             {
-                                                //сделать
+                                                switch (partsQuery[3])
+                                                {
+                                                    case "олимп":
+                                                    case "назад":
+                                                        {
+                                                            await botClient.EditMessageTextAsync(
+                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                messageId: callbackQuery.Message.MessageId,
+                                                                text: "Выберите по какому признаку будут разделены олимпиады",
+                                                                replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.olympiadKeyboard
+                                                                );
+                                                        }
+                                                        break;
+                                                    case "пред":
+                                                        {
+                                                            switch (partsQuery[4])
+                                                            {
+                                                                case "пред":
+                                                                case "назад":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Какой предмет вас интересует?",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.subjectKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "физ":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Выбирай ниже",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.Physics.physicsKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "мат":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Выбирай ниже",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.Mathematics.mathematicsKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "инф":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Выбирай ниже",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.Informatics.informaticsKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "хим":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Выбирай ниже",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.Chemistry.chemistryKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "гум":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Всероссийская толстовская олимпиада школьников\n" +
+                                                                            "Олимпиада носит имя Л.Н.Толстого – выдающегося писателя и мыслителя, художественные произведения и социально - политические работы которого составляют культурное наследие России.Название олимпиады обусловлено тем, что Л.Н.Толстой был не только великим писателем, но и философом, общественным деятелем, педагогом, создавшим свою систему образования и воспитания.\n" +
+                                                                            "К участию в олимпиаду приглашаются учащиеся 10 - 11 классов, обучающиеся по образовательным программам основного общего, среднего общего и среднего - профессионального образования.\n" +
+                                                                            "Олимпиада проводится по предметам: обществознание, история и литература.\n" +
+                                                                            "Олимпиада проводится в два этапа: отборочный и заключительный тур.Отборочный тур проводится дистанционно на сайте олимпиады с ноября по декабрь.Заключительный тур проводится очно в феврале - марте на территории СПбПУ и других площадках по всей России.\n" +
+                                                                            "Для участия в олимпиаде необходимо зарегистрироваться на сайте олимпиады и пройти дистанционный отборочный тур.",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.Humanitarian.humanitarianKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                            }
+                                                        }
+                                                        break;
+                                                    case "назв":
+                                                        {
+                                                            switch (partsQuery[4])
+                                                            {
+                                                                case "назв":
+                                                                case "назад":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Какая категория олимпиад вас интересует?\n\n" +
+                                                                            "P.S.\n" +
+                                                                            "<a href='https://rsr-olymp.ru/about'>РСОШ</a> - олимпиады Российского совета олимпиад школьников\n" +
+                                                                            "<a href='http://www.anichkov.ru/page/olimp/'>ВсОШ</a> - Всероссийская олимпиада школьников",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.titleKeyboard,
+                                                                            parseMode: ParseMode.Html
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "рсош":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Выбирай ниже",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.rsochKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                            }
+                                                        }
+                                                        break;
+                                                    case "я олимп":
+                                                        {
+                                                            switch (partsQuery[4])
+                                                            {
+                                                                case "я олимп":
+                                                                case "назад":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Грацуем!",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.olympiadManKeyboard
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "бви":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "У победителей и призеров олимпиад есть особое право поступления без вступительных испытаний. О том, как им воспользоваться, узнай <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/olympics/'>по ссылке</a>.",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.backKeyboard,
+                                                                            parseMode: ParseMode.Html
+                                                                            );
+                                                                    }
+                                                                    break;
+                                                                case "соотв":
+                                                                    {
+                                                                        await botClient.EditMessageTextAsync(
+                                                                            chatId: callbackQuery.Message.Chat.Id,
+                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            text: "Соответствие предметов олимпиад и направлений СПбПУ можно проверить в <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/olympics/the-line-profile-all-russian-olympiad-/'>этом положении</a>.",
+                                                                            replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.backKeyboard,
+                                                                            parseMode: ParseMode.Html
+                                                                            );
+                                                                    }
+                                                                    break;
+
+                                                            }
+                                                        }
+                                                        break;
+                                                }
                                             }
                                             break;
                                         case "соб":
@@ -773,16 +1213,6 @@ namespace SPbPUBOT
                                     }
                                 }
                                 break;
-                            case "назад":
-                                {
-                                    await botClient.EditMessageTextAsync(
-                                        chatId: callbackQuery.Message.Chat.Id,
-                                        messageId: callbackQuery.Message.MessageId,
-                                        text: "Выбери ону из категорий, чтобы узнать больше",
-                                        replyMarkup: Keyboards.User.chooseKeyboard
-                                        );
-                                }
-                                break;
                         }
                     }
                     break;
@@ -866,6 +1296,7 @@ namespace SPbPUBOT
                             case "Что бы вы хотели ":
                             case "На площадке izi.T":
                             case "Соцсети и сайты д":
+                            case "Сейчас расскажем:":
                                 {
                                     await botClient.EditMessageTextAsync(
                                         chatId: callbackQuery.Message.Chat.Id,
@@ -1278,16 +1709,30 @@ namespace SPbPUBOT
                 {
                     case "/start":
                         {
-                            await botClient.DeleteMessageAsync(
+                            using(ApplicationContext db = new ApplicationContext())
+                            {
+                                if (db.Users.Find(chatsUserID).messageMenuID != null)
+                                {
+                                    await botClient.DeleteMessageAsync(
+                                        chatId: chatsUserID,
+                                        messageId: db.Users.Find(chatsUserID).messageMenuID
+                                        );
+                                }
+                                else
+                                {
+                                    await botClient.SendTextMessageAsync(
+                                       chatId: chatsUserID,
+                                       text: "Привет! 🤖\n\n" +
+                                       "Я твой чат-бот для связи с Политехническим университетом."
+                                       );
+                                }
+                            }
+
+                            await botClient.DeleteMessageAsync( // удаление сообщения /start
                                 chatId: chatsUserID,
                                 messageId: message.MessageId
                                 );
 
-                            await botClient.SendTextMessageAsync(
-                                chatId: chatsUserID,
-                                text: "Привет! 🤖\n\n" +
-                                "Я твой чат-бот для связи с Политехническим университетом."
-                                );
                             var messageMenu = await botClient.SendTextMessageAsync(
                                 chatId: chatsUserID,
                                 text: "Выбери кем ты являешься",
