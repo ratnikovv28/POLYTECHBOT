@@ -57,19 +57,6 @@ namespace SPbPUBOT
                 },
             });
 
-            public static InlineKeyboardMarkup callOperatorKeyboard = new(
-            new[]
-            {
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData("Вызвать оператора", "абитур|чзв|оператор|вызов"),
-                },
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData("Назад", "назад"),
-                },
-            });
-
             public static ReplyKeyboardMarkup whileChattingKeyboard = new ReplyKeyboardMarkup(
             new[]
             {
@@ -2538,16 +2525,20 @@ namespace SPbPUBOT
                         }
                     }
                 }
+
+                public static InlineKeyboardMarkup callOperatorKeyboard = new(
+                new[]
+                {
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("Вызвать оператора", "абитур|чзв|оператор|вызов"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("Назад", "абитур|чзв|назад"),
+                    },
+                });
             }
         }
-
-        public static InlineKeyboardMarkup backKeyboard = new(
-        new[]
-        {
-            new[]
-            {
-                    InlineKeyboardButton.WithCallbackData("Назад", "назад"),
-            },
-        });
     }
 }

@@ -78,7 +78,7 @@ namespace SPbPUBOT
         private static async Task BotOnCallbackQueryReceived(ITelegramBotClient botClient, CallbackQuery callbackQuery) // процесс ответа Callback
         {
             long chatID = callbackQuery.Message.Chat.Id;
-            int messageID = callbackQuery.Message.MessageId;
+            int messID = callbackQuery.Message.MessageId;
 
             string[] partsQuery = callbackQuery.Data.Split("|");
 
@@ -93,7 +93,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.EditMessageTextAsync(
                                         chatId: chatID,
-                                        messageId: messageID,
+                                        messageId: messID,
                                         text: "Выбери одну из категорий, чтобы узнать больше",
                                         replyMarkup: Keyboards.User.Enrollee.startKeyboard
                                         );
@@ -108,7 +108,7 @@ namespace SPbPUBOT
                                             {
                                                 await botClient.EditMessageTextAsync(
                                                     chatId: chatID,
-                                                    messageId: messageID,
+                                                    messageId: messID,
                                                     text: "Чтобы изучить вопрос более детально выбери категорию, к которой ты относишься",
                                                     replyMarkup: Keyboards.User.Enrollee.Admission.basicKeyboard
                                                     );
@@ -122,8 +122,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Вот вопросы, наиболее часто интересующие наших абитуриентов:",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.School.afterSchoolKeyboard
                                                                 );
@@ -137,8 +137,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Ответим на все вопросы про подачу документов:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.Documents.documentsKeyboard
                                                                             );
@@ -147,8 +147,8 @@ namespace SPbPUBOT
                                                                 case "перечень":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "С полным перечнем документов, необходимых для зачисления, можно ознакомиться <a href='https://www.spbstu.ru/abit/bachelor/apply/the-list-of-documents/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.Documents.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -158,8 +158,8 @@ namespace SPbPUBOT
                                                                 case "как":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "На данный момент есть несколько способов подачи документов в университет: \n" +
                                                                             "1.Лично по адресу: г.Санкт - Петербург, Политехническая ул., д. 29, Главный учебный корпус\n" +
                                                                             "2.Дистанционно через Личный кабинет абитуриента.Он будет работать с 20 июня по ссылке: https://enroll.spbstu.ru/login\n" +
@@ -172,8 +172,8 @@ namespace SPbPUBOT
                                                                 case "сроки":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Старт приёмной комиссии 20 июня. Подробно со всеми датами можно ознакомиться в <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/plan-the-calendar-of-admission-to-the-1st-year/'>календаре абитуриента</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.Documents.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -183,8 +183,8 @@ namespace SPbPUBOT
                                                                 case "колво":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "В Политехе можно всего подать документы на три направления подготовки. Причем по каждому направлению можно одновременно подавать документы по различным условиям поступления — то есть целевое, бюджет, контракт, очное, заочное и т.д. \n" +
                                                                             "Подробнее об этом написано в <a href='https://www.spbstu.ru/upload/sveden/Pravila_priema.pdf'>правилах приема 2022</a> Политеха, в пункте 3 на 12 странице.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.Documents.backKeyboard,
@@ -202,8 +202,8 @@ namespace SPbPUBOT
                                                                 case "баллы":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выберите год поступления",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.Points.pointsKeyboard
                                                                             );
@@ -213,7 +213,7 @@ namespace SPbPUBOT
                                                                     {
                                                                         using (ApplicationContext db = new ApplicationContext())
                                                                         {
-                                                                            long chatsUserID = callbackQuery.Message.Chat.Id;
+                                                                            long chatsUserID = chatID;
                                                                             await botClient.DeleteMessageAsync(
                                                                                 chatId: chatsUserID,
                                                                                 messageId: db.Users.Find(chatsUserID).messageMenuID
@@ -222,15 +222,15 @@ namespace SPbPUBOT
                                                                             using (FileStream stream = System.IO.File.OpenRead(Lists.pointsList[partsQuery[4]]))
                                                                             {
                                                                                 InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, $"Баллы {partsQuery[4]}.pdf");
-                                                                                await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, inputOnlineFile);
+                                                                                await botClient.SendDocumentAsync(chatID, inputOnlineFile);
                                                                             }
 
-                                                                            var mesID = await botClient.SendTextMessageAsync(
-                                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                            var messageID = await botClient.SendTextMessageAsync(
+                                                                                chatId: chatID,
                                                                                 text: "Выберите год поступления",
                                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.School.Points.pointsKeyboard
                                                                                 );
-                                                                            db.Users.Find(chatsUserID).messageMenuID = mesID.MessageId;
+                                                                            db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
                                                                             db.SaveChanges();
                                                                         }
                                                                     }
@@ -241,8 +241,8 @@ namespace SPbPUBOT
                                                     case "колво":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "С количеством мест по разным условиям поступления можно ознакомиться <a href='https://www.spbstu.ru/abit/bachelor/apply/perechen-napravleniy-podgotovki/'>здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.School.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -253,7 +253,7 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
+                                                                long chatsUserID = chatID;
                                                                 await botClient.DeleteMessageAsync(
                                                                     chatId: chatsUserID,
                                                                     messageId: db.Users.Find(chatsUserID).messageMenuID
@@ -262,15 +262,15 @@ namespace SPbPUBOT
                                                                 using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/Obrazovatelnye_programmy_bakalavriata_i_spetsialiteta.pdf"))
                                                                 {
                                                                     InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа бакалавриата и специалитета.pdf");
-                                                                    await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, inputOnlineFile);
+                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
                                                                 }
 
-                                                                var mesID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                var messageID = await botClient.SendTextMessageAsync(
+                                                                    chatId: chatID,
                                                                     text: "Вот вопросы, наиболее часто интересующие наших абитуриентов:",
                                                                     replyMarkup: Keyboards.User.Enrollee.Admission.School.afterSchoolKeyboard
                                                                     );
-                                                                db.Users.Find(chatsUserID).messageMenuID = mesID.MessageId;
+                                                                db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
                                                                 db.SaveChanges();
                                                             }
                                                         }
@@ -283,8 +283,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Вопросы о платном обучении:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.ContractForm.contractFormKeyboard
                                                                             );
@@ -293,8 +293,8 @@ namespace SPbPUBOT
                                                                 case "стоим":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Стоимость обучения на 2022-2023 учебный год будет опубликована к 1 июня <a href='https://www.spbstu.ru/abit/bachelor/apply/stoimost-obucheniya/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.ContractForm.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -304,8 +304,8 @@ namespace SPbPUBOT
                                                                 case "кредит":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "У студентов есть возможность заплатить за свое обучение самостоятельно, взяв льготный образовательный кредит. Про это мы написали в <a href='https://zen.yandex.ru/media/pokolenie/chto-takoe-obrazovatelnyi-kredit-6241c8ccf911f53a214d9349'>нашей статье</a> на Дзене.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.ContractForm.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -315,8 +315,8 @@ namespace SPbPUBOT
                                                                 case "маткап":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Оплатить обучение можно и <a href='https://pfr.gov.ru/grazhdanam/msk/msk_obrazovanie/'>материнским капиталом</a>. На дату начала обучения ребенок должен быть не старше 25 лет. Организация должна находиться на территории России и иметь лицензию на оказание образовательных услуг. Подробнее об оплате обучения материнским капиталом написано <a href='https://www.spbstu.ru/abit/events/kak-eshche-mozhno-oplatit-uchebu-v-politekhe-materinskiy-kapital-i-obrazovatelnyy-kredit/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.ContractForm.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -329,8 +329,8 @@ namespace SPbPUBOT
                                                     case "целевое":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "В Политех можно поступить на целевое обучение, т.е. на бюджет по направлению от государственного ведомства или предприятия. Подробно об этом написано <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/tselevoe-obuchenie/'>вот здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.School.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -345,8 +345,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выберите один из пунктов ниже",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.EntranceTests.entranceTestsKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -356,8 +356,8 @@ namespace SPbPUBOT
                                                                 case "лица":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Нужно ли и можно ли тебе сдавать вступительные испытания Политеха?\nПроверь на сайте, относишься ли ты <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/allowed-pass-entrance-test/'>к этим категориям</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -367,8 +367,8 @@ namespace SPbPUBOT
                                                                 case "перечень":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Перечень вступительных испытаний есть <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/the-list-of-entrance-examinations/'>здесь</a>. Обрати, пожалуйста, внимание, что лица, имеющие профессиональное образование (среднее профессиональное или высшее), сдают отдельный перечень вступительных испытаний (см. вступительные испытания для лиц, имеющих профессиональное образование).",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -378,8 +378,8 @@ namespace SPbPUBOT
                                                                 case "расписание":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Расписание вступительных испытаний будет по <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/the-schedule-of-entrance-examinations/'>ссылке</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -389,8 +389,8 @@ namespace SPbPUBOT
                                                                 case "программы":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "С программами вступительных испытаний можно ознакомиться <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/program-of-entrance-examinations/'>здесь</a>. А образцы заданий доступны <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/obraztsy-zadaniy-vstupitelnykh-ispytaniy/'>тут</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -400,8 +400,8 @@ namespace SPbPUBOT
                                                                 case "дизайн":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "На Дизайн и Дизайн архитектурной среды сдавать творческие вступительные испытания необходимо всем поступающим. А также необходимо учитывать, что окончание приема документов наступает раньше — 7 июля. Подробная информация есть <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/vstupitelnye-ispytaniya-po-napravleniyu-podgotovki-dizayn/'>на странице</a>",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -411,8 +411,8 @@ namespace SPbPUBOT
                                                                 case "2022":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "В 2022 году вступительные испытания будут проходить дистанционно на портале электронного обучения СПбПУ (<a href='https://lms.spbstu.ru'>LMS Moodle</a>)",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -430,8 +430,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Грацуем!",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.OlypmiadMan.olympiadManKeyboard
                                                                             );
@@ -440,8 +440,8 @@ namespace SPbPUBOT
                                                                 case "бви":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "У победителей и призеров олимпиад есть особое право поступления без вступительных испытаний. О том, как им воспользоваться, узнай <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/olympics/'>по ссылке</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.OlypmiadMan.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -451,8 +451,8 @@ namespace SPbPUBOT
                                                                 case "соотв":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Соответствие предметов олимпиад и направлений СПбПУ можно проверить в <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/olympics/the-line-profile-all-russian-olympiad-/'>этом положении</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.OlypmiadMan.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -465,8 +465,8 @@ namespace SPbPUBOT
                                                     case "достиж":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "1.Максимальная сумма баллов, которые вы можете получить за индивидуальные достижения - 10 баллов.\n\n" +
                                                                 "2.Если вы являетесь победителем/призёром заключительного этапа Всероссийской олимпиады школьников, то вы можете быть зачисленными в университет без вступительных испытаний.\n\n" +
                                                                 "3.Если вы являетесь победителем/призёром олимпиады РСОШ с ЕГЭ не менее 75 баллов, то вы можете быть зачисленными в университет без вступительных испытаний.\n\n" +
@@ -484,8 +484,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Вопросы о медосмотре и медицинских документах:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.MedicalDocuments.medicalDocumentsKeyboard
                                                                             );
@@ -494,8 +494,8 @@ namespace SPbPUBOT
                                                                 case "что":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Существует обязательный медицинский осмотр для поступающих на определенные специальности и программы подготовки:\n" +
                                                                             "— Теплоэнергетика и теплотехника; \n" +
                                                                             "— Электроэнергетика и электротехника; \n" +
@@ -516,8 +516,8 @@ namespace SPbPUBOT
                                                                 case "зачисл":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "После зачисления первокурсникам необходимо будет предоставить некоторые медицинские документы. Ознакомиться с ними можно <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/meditsinskie-dokumenty-dlya-zachislennykh-studentov/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.MedicalDocuments.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -530,8 +530,8 @@ namespace SPbPUBOT
                                                     case "минбаллы":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Минимальные баллы — это то количество баллов, которое необходимо набрать, чтобы участвовать в конкурсе. То есть, набрав, к примеру, 50 баллов по русскому языку (а минимальный 55), абитуриент не сможет подать документы в Политех, к сожалению. Ознакомиться с минимальными баллами можно <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/the-list-of-entrance-examinations/'>по ссылке</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.School.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -541,8 +541,8 @@ namespace SPbPUBOT
                                                     case "льгот":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "У некоторых поступающих есть особое право, которым они могут воспользоваться. Узнать, относишься ли ты к льготной категории лиц и какие условия у льготников есть, можно <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/beneficiaries/'>здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.School.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -560,8 +560,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Самые популярные вопросы наших абитуриентов:",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.College.afterCollegeKeyboard
                                                                 );
@@ -570,8 +570,8 @@ namespace SPbPUBOT
                                                     case "доки":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "С полным перечнем документов, необходимых для зачисления, можно ознакомиться <a href='https://www.spbstu.ru/abit/bachelor/apply/the-list-of-documents/'>здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.College.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -585,8 +585,8 @@ namespace SPbPUBOT
                                                                 case "баллы":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выберите год поступления",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.Points.pointsKeyboard
                                                                             );
@@ -596,7 +596,7 @@ namespace SPbPUBOT
                                                                     {
                                                                         using (ApplicationContext db = new ApplicationContext())
                                                                         {
-                                                                            long chatsUserID = callbackQuery.Message.Chat.Id;
+                                                                            long chatsUserID = chatID;
                                                                             await botClient.DeleteMessageAsync(
                                                                                 chatId: chatsUserID,
                                                                                 messageId: db.Users.Find(chatsUserID).messageMenuID
@@ -605,11 +605,11 @@ namespace SPbPUBOT
                                                                             using (FileStream stream = System.IO.File.OpenRead(Lists.pointsList[partsQuery[4]]))
                                                                             {
                                                                                 InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, $"Баллы {partsQuery[4]}.pdf");
-                                                                                await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, inputOnlineFile);
+                                                                                await botClient.SendDocumentAsync(chatID, inputOnlineFile);
                                                                             }
 
                                                                             var messageID = await botClient.SendTextMessageAsync(
-                                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                                chatId: chatID,
                                                                                 text: "Выберите год поступления",
                                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.College.Points.pointsKeyboard
                                                                                 );
@@ -624,8 +624,8 @@ namespace SPbPUBOT
                                                     case "колво":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "С количеством мест по разным условиям поступления можно ознакомиться <a href='https://www.spbstu.ru/abit/bachelor/apply/perechen-napravleniy-podgotovki/'>здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.College.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -636,7 +636,7 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
+                                                                long chatsUserID = chatID;
                                                                 await botClient.DeleteMessageAsync(
                                                                     chatId: chatsUserID,
                                                                     messageId: db.Users.Find(chatsUserID).messageMenuID
@@ -645,11 +645,11 @@ namespace SPbPUBOT
                                                                 using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/Obrazovatelnye_programmy_bakalavriata_i_spetsialiteta.pdf"))
                                                                 {
                                                                     InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа бакалавриата и специалитета.pdf");
-                                                                    await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, inputOnlineFile);
+                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
                                                                 }
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                    chatId: chatID,
                                                                     text: "Самые популярные вопросы наших абитуриентов:",
                                                                     replyMarkup: Keyboards.User.Enrollee.Admission.College.afterCollegeKeyboard
                                                                     );
@@ -666,8 +666,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Вопросы о платном обучении:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.ContractForm.contractFormKeyboard
                                                                             );
@@ -676,8 +676,8 @@ namespace SPbPUBOT
                                                                 case "стоим":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Стоимость обучения на 2022-2023 учебный год будет опубликована к 1 июня <a href='https://www.spbstu.ru/abit/bachelor/apply/stoimost-obucheniya/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.ContractForm.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -687,8 +687,8 @@ namespace SPbPUBOT
                                                                 case "кредит":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "У студентов есть возможность заплатить за свое обучение самостоятельно, взяв льготный образовательный кредит. Про это мы написали в <a href='https://zen.yandex.ru/media/pokolenie/chto-takoe-obrazovatelnyi-kredit-6241c8ccf911f53a214d9349'>нашей статье</a> на Дзене.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.ContractForm.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -698,8 +698,8 @@ namespace SPbPUBOT
                                                                 case "маткап":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Оплатить обучение можно и <a href='https://pfr.gov.ru/grazhdanam/msk/msk_obrazovanie/'>материнским капиталом</a>. На дату начала обучения ребенок должен быть не старше 25 лет. Организация должна находиться на территории России и иметь лицензию на оказание образовательных услуг. Подробнее об оплате обучения материнским капиталом написано <a href='https://www.spbstu.ru/abit/events/kak-eshche-mozhno-oplatit-uchebu-v-politekhe-materinskiy-kapital-i-obrazovatelnyy-kredit/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.ContractForm.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -712,8 +712,8 @@ namespace SPbPUBOT
                                                     case "целевое":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "В Политех можно поступить на целевое обучение, т.е. на бюджет по направлению от государственного ведомства или предприятия. Подробно об этом написано <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/tselevoe-obuchenie/'>вот здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.College.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -728,8 +728,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Самые актуальные вопросы:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.CompetitiveLists.competitiveListsKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -739,8 +739,8 @@ namespace SPbPUBOT
                                                                 case "как":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Конкурсные списки ранжируются следующим образом: \n" +
                                                                             "1.По убыванию суммы конкурсных баллов(баллы за ЕГЭ / Вступительные испытания + баллы за индивидуальные достижения).\n" +
                                                                             "2.При равенстве суммы конкурсных баллов — по убыванию суммы баллов, начисленных по результатам вступительных испытаний.\n" +
@@ -757,8 +757,8 @@ namespace SPbPUBOT
                                                                 case "где":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Списки подавших документы можно найти <a href='https://www.spbstu.ru/abit/admission-campaign/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.CompetitiveLists.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -768,8 +768,8 @@ namespace SPbPUBOT
                                                                 case "нетчел":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Сначала давайте убедимся, что вас действительно нет в списке. Чтобы абитуриент появился в списке, его заявка в Личном кабинете должна быть уже рассмотрена и одобрена (проверьте уведомления).\n\n" +
                                                                             "После этого абитуриент попадает <a href='https://www.spbstu.ru/abit/admission-campaign/'>в список</a>. Внимательно выбирайте параметры (проверьте, что вы не перепутали институт, форму обучения и т.д.). Часто путают бакалавриат и специалитет.\n\n" +
                                                                             "Далее пролистайте список до конца и раскройте список полностью.Выберете в строчке 'Строк на странице' параметр 'Все'.\n\n" +
@@ -784,8 +784,8 @@ namespace SPbPUBOT
                                                                 case "нетпред":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Без паники, мы вам поможем! Напишите, пожалуйста, нам в техподдержку на почту <a href='http://mailto:support@spbstu.ru/'>support@spbstu.ru</a>. Укажите в письме номер ID из личного кабинета, ФИО и подробно расскажите о проблеме (указывая даты и прилагая скриншоты) — так мы сможем скорее вам помочь.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.CompetitiveLists.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -795,8 +795,8 @@ namespace SPbPUBOT
                                                                 case "нетиндивид":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Без паники, мы вам поможем! Напишите, пожалуйста, нам в техподдержку на почту <a href='http://mailto:support@spbstu.ru/'>support@spbstu.ru</a>. Укажите в письме номер ID из личного кабинета, ФИО и подробно расскажите о проблеме (указывая даты и прилагая скриншоты) — так мы сможем скорее вам помочь.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.CompetitiveLists.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -814,8 +814,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Вопросы о медосмотре и медицинских документах:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.MedicalDocuments.medicalDocumentsKeyboard
                                                                             );
@@ -824,8 +824,8 @@ namespace SPbPUBOT
                                                                 case "что":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Существует обязательный медицинский осмотр для поступающих на определенные специальности и программы подготовки:\n" +
                                                                             "— Теплоэнергетика и теплотехника; \n" +
                                                                             "— Электроэнергетика и электротехника; \n" +
@@ -846,8 +846,8 @@ namespace SPbPUBOT
                                                                 case "зачисл":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "После зачисления первокурсникам необходимо будет предоставить некоторые медицинские документы. Ознакомиться с ними можно <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/meditsinskie-dokumenty-dlya-zachislennykh-studentov/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.MedicalDocuments.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -860,8 +860,8 @@ namespace SPbPUBOT
                                                     case "достиж":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "1.Максимальная сумма баллов, которые вы можете получить за индивидуальные достижения - 10 баллов.\n\n" +
                                                                 "2.Если вы являетесь победителем/призёром заключительного этапа Всероссийской олимпиады школьников, то вы можете быть зачисленными в университет без вступительных испытаний.\n\n" +
                                                                 "3.Если вы являетесь победителем/призёром олимпиады РСОШ с ЕГЭ не менее 75 баллов, то вы можете быть зачисленными в университет без вступительных испытаний.\n\n" +
@@ -879,8 +879,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Здесь есть все, что вы хотели знать о вступительных испытаниях:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.EntranceTests.entranceTestsKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -890,8 +890,8 @@ namespace SPbPUBOT
                                                                 case "лица":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Нужно ли и можно ли тебе сдавать вступительные испытания Политеха?\nПроверь на сайте, относишься ли ты <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/allowed-pass-entrance-test/'>к этим категориям</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -901,8 +901,8 @@ namespace SPbPUBOT
                                                                 case "перечень":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Перечень вступительных испытаний есть <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/the-list-of-entrance-examinations/'>здесь</a>. Обрати, пожалуйста, внимание, что лица, имеющие профессиональное образование (среднее профессиональное или высшее), сдают отдельный перечень вступительных испытаний (см. вступительные испытания для лиц, имеющих профессиональное образование).",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -912,8 +912,8 @@ namespace SPbPUBOT
                                                                 case "расписание":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Расписание вступительных испытаний будет по <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/the-schedule-of-entrance-examinations/'>ссылке</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -923,8 +923,8 @@ namespace SPbPUBOT
                                                                 case "программы":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "С программами вступительных испытаний можно ознакомиться <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/program-of-entrance-examinations/'>здесь</a>. А образцы заданий доступны <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/obraztsy-zadaniy-vstupitelnykh-ispytaniy/'>тут</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -934,8 +934,8 @@ namespace SPbPUBOT
                                                                 case "дизайн":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "На Дизайн и Дизайн архитектурной среды сдавать творческие вступительные испытания необходимо всем поступающим. А также необходимо учитывать, что окончание приема документов наступает раньше — 7 июля. Подробная информация есть <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/vstupitelnye-ispytaniya-po-napravleniyu-podgotovki-dizayn/'>на странице</a>",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -945,8 +945,8 @@ namespace SPbPUBOT
                                                                 case "2022":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "В 2022 году вступительные испытания будут проходить дистанционно на портале электронного обучения СПбПУ (<a href='https://lms.spbstu.ru'>LMS Moodle</a>)",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.College.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -959,8 +959,8 @@ namespace SPbPUBOT
                                                     case "вебинар":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Специально для выпускников колледжа мы записали вебинар, где рассказали об особенностях поступления в Политехнический университет. Запись есть <a href='https://vk.com/wall-121255855_47445'>здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.College.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -970,8 +970,8 @@ namespace SPbPUBOT
                                                     case "статья":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Мы подробно написали о поступлении после колледжа в <a href='https://zen.yandex.ru/media/pokolenie/postuplenie-posle-kolledja-chto-nujno-znat-620627117f3eb35498fdd759'>этой статье</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.College.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -989,8 +989,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Выбери что из указанных разделов тебя наиболее сильно интересует",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.magistrKeyboard
                                                                 );
@@ -1004,8 +1004,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Ответим на все вопросы про подачу документов:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.Documents.documentsKeyboard
                                                                             );
@@ -1014,8 +1014,8 @@ namespace SPbPUBOT
                                                                 case "перечень":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "С полным перечнем документов, необходимых для зачисления, можно ознакомиться <a href='https://www.spbstu.ru/abit/master/apply/the-list-of-documents/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.Documents.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1025,8 +1025,8 @@ namespace SPbPUBOT
                                                                 case "как":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "На данный момент есть несколько способов подачи документов в университет: \n" +
                                                                             "1.Лично по адресу: г.Санкт - Петербург, Политехническая ул., д. 29, Главный учебный корпус\n" +
                                                                             "2.Дистанционно через Личный кабинет абитуриента https://enroll.spbstu.ru/login\n" +
@@ -1038,8 +1038,8 @@ namespace SPbPUBOT
                                                                 case "сроки":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Прием в магистратуру начинается 4 апреля. С подробным планом-календарем приема в магистратуру можно ознакомиться <a href='https://www.spbstu.ru/abit/master/review-the-regulatory-documents/plan-the-calendar-of-admission/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.Documents.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1049,8 +1049,8 @@ namespace SPbPUBOT
                                                                 case "колво":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "На любое количество направлений. Обращаем внимание, что экзамены проводятся отдельно по каждому.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.Documents.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1068,8 +1068,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выберите один из пунктов ниже",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.EntranceTests.entranceTestsKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1079,8 +1079,8 @@ namespace SPbPUBOT
                                                                 case "прога":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Программы вступительных испытаний всех образовательных программ вы можете найти на <a href='https://www.spbstu.ru/abit/master/pass-the-entrance-tests/program-of-entrance-examinations/'>сайте</a>",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1090,8 +1090,8 @@ namespace SPbPUBOT
                                                                 case "примеры":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "<a href='https://www.spbstu.ru/abit/master/pass-the-entrance-tests/program-of-entrance-examinations/'>Примеры вступительных испытаний</a> указаны в каждой программе вступительных испытаний в теле документа",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1101,8 +1101,8 @@ namespace SPbPUBOT
                                                                 case "расписание":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Расписание вступительных испытаний будет доступно по <a href='https://www.spbstu.ru/abit/master/pass-the-entrance-tests/the-list-of-entrance-examinations/'>ссылке</a> до 1 июня 2022 года.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1112,8 +1112,8 @@ namespace SPbPUBOT
                                                                 case "вступ":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Междисциплинарный экзамен проводится в очно в письменной форме и (или) с использованием дистанционных технологий (при условии идентификации поступающих при сдаче ими вступительных испытаний). Более подробно про вступительные испытания написано <a href='https://www.spbstu.ru/abit/master/pass-the-entrance-tests/entrance-test-and-olympiad/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.EntranceTests.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1127,7 +1127,7 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
+                                                                long chatsUserID = chatID;
                                                                 await botClient.DeleteMessageAsync(
                                                                     chatId: chatsUserID,
                                                                     messageId: db.Users.Find(chatsUserID).messageMenuID
@@ -1136,11 +1136,11 @@ namespace SPbPUBOT
                                                                 using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/master_apply_the_list_of_areas_of_training.pdf"))
                                                                 {
                                                                     InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Общее количество бюджетных и контрактных мест для поступления в 2021 году.pdf");
-                                                                    await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, inputOnlineFile);
+                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
                                                                 }
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                    chatId: chatID,
                                                                     text: "Выбери что из указанных разделов тебя наиболее сильно интересует",
                                                                     replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.magistrKeyboard
                                                                     );
@@ -1153,7 +1153,7 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
+                                                                long chatsUserID = chatID;
                                                                 await botClient.DeleteMessageAsync(
                                                                     chatId: chatsUserID,
                                                                     messageId: db.Users.Find(chatsUserID).messageMenuID
@@ -1162,11 +1162,11 @@ namespace SPbPUBOT
                                                                 using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/magistr2022.pdf"))
                                                                 {
                                                                     InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа магистра.pdf");
-                                                                    await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, inputOnlineFile);
+                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
                                                                 }
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                    chatId: chatID,
                                                                     text: "Выбери что из указанных разделов тебя наиболее сильно интересует",
                                                                     replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.magistrKeyboard
                                                                     );
@@ -1178,8 +1178,8 @@ namespace SPbPUBOT
                                                     case "допы":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Дополнительные баллы можно получить за наличие индивидуальных достижений.\n" +
                                                                 "диплом с отличием(+10)\n" +
                                                                 "статус призёра конкурса портфолио СПбПУ(+6)\n" +
@@ -1193,8 +1193,8 @@ namespace SPbPUBOT
                                                     case "минбаллы":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Минимальное количество баллов за междисциплинарный экзамен составляет 50 баллов.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.backKeyboard
                                                                 );
@@ -1203,8 +1203,8 @@ namespace SPbPUBOT
                                                     case "потрф":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "<a href='https://www.spbstu.ru/abit/master/pass-the-entrance-tests/konkurs-portfolio-spbpu/'>Конкурс портфолио</a> – это возможность для абитуриента поступить в магистратуру без вступительных испытаний (в случае победы), либо заработать +6 баллов в качестве индивидуального достижения (если призовое место).\n\n" +
                                                                 "Победители конкурса портфолио, поступившие в СПбПУ, будут получать ежемесячно грант от 15000 рублей.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.backKeyboard,
@@ -1215,8 +1215,8 @@ namespace SPbPUBOT
                                                     case "япроф":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Победители и призеры олимпиады «Я – профессионал» могут поступить в магистратуру без вступительных испытаний, а также получить дополнительно +4 балла к сумме конкурсных баллов. Узнать подробнее об олимпиаде «Я – профессионал» можно <a href='https://www.spbstu.ru/abit/master/pass-the-entrance-tests/olimpiada-ya-professional/'>здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -1226,8 +1226,8 @@ namespace SPbPUBOT
                                                     case "целевое":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "В Политех можно поступить на целевое обучение, т.е. на бюджет по направлению от государственного ведомства или предприятия. Подробно об этом написано вот <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/tselevoe-obuchenie/'>здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.Magistr.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -1240,8 +1240,8 @@ namespace SPbPUBOT
                                         case "даты":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Чтобы оставаться в курсе событий рекомендуем установить наши календари",
                                                     replyMarkup: Keyboards.User.Enrollee.Admission.Dates.datesKeyboard
                                                     );
@@ -1255,8 +1255,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Выберите вопрос, ответ на который вы не смогли найти в других разделах или начните чат с представителем приемной комиссии",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.admissionProcessKeyboard
                                                                 );
@@ -1269,8 +1269,8 @@ namespace SPbPUBOT
                                                                 case "опер":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Для того, чтобы начать диалог с представителем Политеха, нажмите кнопку ниже.\n\n" +
                                                                             "А ещё вы можете связаться с Приемной комиссией Политеха по телефону\n" +
                                                                             "8(812) 775 - 05 - 30 — для звонков из Санкт - Петербурга\n" +
@@ -1284,33 +1284,34 @@ namespace SPbPUBOT
                                                                     {
                                                                         using (ApplicationContext db = new ApplicationContext())
                                                                         {
-                                                                            long chatsUserID = callbackQuery.Message.Chat.Id;
                                                                             await botClient.DeleteMessageAsync(
-                                                                                chatId: chatsUserID,
-                                                                                messageId: db.Users.Find(chatsUserID).messageMenuID
+                                                                                chatId: chatID,
+                                                                                messageId: db.Users.Find(chatID).messageMenuID
                                                                                 );
-                                                                            if (db.UserAssistance.FirstOrDefault(k => k.UserID == chatsUserID) == null)
+                                                                            if (db.UserAssistance.FirstOrDefault(k => k.UserID == chatID) == null)
                                                                             {
                                                                                 db.UserAssistance.Add(new UserAssistance()
                                                                                 {
-                                                                                    UserID = chatsUserID,
+                                                                                    UserID = chatID,
                                                                                     Username = callbackQuery.From.Username
                                                                                 });
 
                                                                                 await botClient.SendTextMessageAsync(
-                                                                                    chatId: chatsUserID,
-                                                                                    text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора"
+                                                                                    chatId: chatID,
+                                                                                    text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                                    "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                                     );
                                                                             }
                                                                             else
                                                                             {
                                                                                 await botClient.SendTextMessageAsync(
-                                                                                    chatId: chatsUserID,
-                                                                                    text: "Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора"
+                                                                                    chatId: chatID,
+                                                                                    text: "Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                                    "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                                     );
                                                                             }
                                                                             var messageID = await botClient.SendTextMessageAsync(
-                                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                                chatId: chatID,
                                                                                 text: "Для того, чтобы начать диалог с представителем Политеха, нажмите кнопку ниже.\n\n" +
                                                                                 "А ещё вы можете связаться с Приемной комиссией Политеха по телефону\n" +
                                                                                 "8(812) 775 - 05 - 30 — для звонков из Санкт - Петербурга\n" +
@@ -1318,7 +1319,7 @@ namespace SPbPUBOT
                                                                                 "Или написать на почту abitur@spbstu.ru.",
                                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.Operator.callOperatorKeyboard
                                                                                 );
-                                                                            db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
+                                                                            db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                                             db.SaveChanges();
                                                                         }
                                                                     }
@@ -1334,8 +1335,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Ответим на все вопросы:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.WhatsNext.whatsNextKeyboard
                                                                             );
@@ -1344,8 +1345,8 @@ namespace SPbPUBOT
                                                                 case "прик":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Приказы о зачислении выходят в соответствии с <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/plan-the-calendar-of-admission-to-the-1st-year/'>календарем</a> приема в <a href='https://www.spbstu.ru/abit/admission-campaign/'>этом разделе</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.WhatsNext.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1355,8 +1356,8 @@ namespace SPbPUBOT
                                                                 case "согл":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Согласие на зачисление — это основание для твоего зачисления. Именно абитуриенты, подавшие согласие на зачисление, будут создавать конкурсную ситуацию и будут зачислены по конкурсу в университет.\n\n" +
                                                                             "Согласие может быть подано только в один вуз на одно направление подготовки, поскольку этот документ подтверждает, что готовы учиться в выбранном университете и в начале учебного года придете на занятия.Подавать несколько согласий на зачисление на бюджет(вне зависимости от того, один это вуз или несколько), не отозвав предыдущие, нельзя.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.WhatsNext.backKeyboard
@@ -1366,8 +1367,8 @@ namespace SPbPUBOT
                                                                 case "дал":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Сначала стоит порадоваться тому, что теперь вы студент Политеха. Поздравляем вас и желаем провести университетские годы с максимальной пользой и интересом! А теперь давайте более конкретно.\n\n" +
                                                                             "В конце августа состоятся встречи первокурсников в институтах и высших школах, куда они поступили.А также иногородние студенты будут заселяться в общежития.Обо всем, что вас ждет, подробно рассказано на <a href='https://www.spbstu.ru/freshman/'>специальном сайте</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.WhatsNext.backKeyboard,
@@ -1381,8 +1382,8 @@ namespace SPbPUBOT
                                                     case "шансы":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Это будет зависеть от количества желающих поступить на то же направление подготовки, что и вы, от количества там бюджетных мест, от результатов вступительных испытаний абитуриентов. Сейчас предсказать все эти факторы невозможно, поэтому ориентируйтесь на <a href='vk.cc/ay5gVJ'>ранжированные списки</a>.\n\n" +
                                                                 "Вы можете отсортировать списки по поданным согласиям(нажмите на соответствующий заголовок столбца в списке)-- так увидите более реальную конкурсную ситуацию.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.backKeyboard,
@@ -1398,8 +1399,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Вопросы о платном обучении:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.ContractForm.contractFormKeyboard
                                                                             );
@@ -1408,8 +1409,8 @@ namespace SPbPUBOT
                                                                 case "стоим":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Стоимость обучения на 2022-2023 учебный год будет опубликована к 1 июня <a href='https://www.spbstu.ru/abit/bachelor/apply/stoimost-obucheniya/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.ContractForm.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1419,8 +1420,8 @@ namespace SPbPUBOT
                                                                 case "кредит":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "У студентов есть возможность заплатить за свое обучение самостоятельно, взяв льготный образовательный кредит. Про это мы написали в <a href='https://zen.yandex.ru/media/pokolenie/chto-takoe-obrazovatelnyi-kredit-6241c8ccf911f53a214d9349'>нашей статье</a> на Дзене.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.ContractForm.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1430,8 +1431,8 @@ namespace SPbPUBOT
                                                                 case "маткап":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Оплатить обучение можно и <a href='https://pfr.gov.ru/grazhdanam/msk/msk_obrazovanie/'>материнским капиталом</a>. На дату начала обучения ребенок должен быть не старше 25 лет. Организация должна находиться на территории России и иметь лицензию на оказание образовательных услуг. Подробнее об оплате обучения материнским капиталом написано <a href='https://www.spbstu.ru/abit/events/kak-eshche-mozhno-oplatit-uchebu-v-politekhe-materinskiy-kapital-i-obrazovatelnyy-kredit/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.ContractForm.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1444,8 +1445,8 @@ namespace SPbPUBOT
                                                     case "цел":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "В Политех можно поступить на целевое обучение, т.е. на бюджет по направлению от государственного ведомства или предприятия. Подробно об этом написано вот <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/tselevoe-obuchenie/'>здесь</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -1460,8 +1461,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Самые актуальные вопросы:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.CompetitiveLists.competitiveListsKeyboard
                                                                             );
@@ -1470,8 +1471,8 @@ namespace SPbPUBOT
                                                                 case "как":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Конкурсные списки ранжируются следующим образом: \n" +
                                                                             "1.По убыванию суммы конкурсных баллов(баллы за ЕГЭ / Вступительные испытания + баллы за индивидуальные достижения).\n" +
                                                                             "2.При равенстве суммы конкурсных баллов — по убыванию суммы баллов, начисленных по результатам вступительных испытаний.\n" +
@@ -1488,8 +1489,8 @@ namespace SPbPUBOT
                                                                 case "где":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Списки подавших документы можно найти <a href='https://www.spbstu.ru/abit/admission-campaign/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.CompetitiveLists.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1499,8 +1500,8 @@ namespace SPbPUBOT
                                                                 case "нетчел":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Сначала давайте убедимся, что вас действительно нет в списке. Чтобы абитуриент появился в списке, его заявка в Личном кабинете должна быть уже рассмотрена и одобрена (проверьте уведомления).\n\n" +
                                                                             "После этого абитуриент попадает <a href='https://www.spbstu.ru/abit/admission-campaign/'>в список</a>. Внимательно выбирайте параметры (проверьте, что вы не перепутали институт, форму обучения и т.д.). Часто путают бакалавриат и специалитет.\n\n" +
                                                                             "Далее пролистайте список до конца и раскройте список полностью.Выберете в строчке 'Строк на странице' параметр 'Все'.\n\n" +
@@ -1515,8 +1516,8 @@ namespace SPbPUBOT
                                                                 case "нетпред":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Без паники, мы вам поможем! Напишите, пожалуйста, нам в техподдержку на почту <a href='http://mailto:support@spbstu.ru/'>support@spbstu.ru</a>. Укажите в письме номер ID из личного кабинета, ФИО и подробно расскажите о проблеме (указывая даты и прилагая скриншоты) — так мы сможем скорее вам помочь.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.CompetitiveLists.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1526,8 +1527,8 @@ namespace SPbPUBOT
                                                                 case "нетиндивид":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Без паники, мы вам поможем! Напишите, пожалуйста, нам в техподдержку на почту <a href='http://mailto:support@spbstu.ru/'>support@spbstu.ru</a>. Укажите в письме номер ID из личного кабинета, ФИО и подробно расскажите о проблеме (указывая даты и прилагая скриншоты) — так мы сможем скорее вам помочь.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.CompetitiveLists.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1545,8 +1546,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Вопросы о медосмотре и медицинских документах:",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.MedicalDocuments.medicalDocumentsKeyboard
                                                                             );
@@ -1555,8 +1556,8 @@ namespace SPbPUBOT
                                                                 case "что":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Существует обязательный медицинский осмотр для поступающих на определенные специальности и программы подготовки:\n" +
                                                                             "— Теплоэнергетика и теплотехника; \n" +
                                                                             "— Электроэнергетика и электротехника; \n" +
@@ -1577,8 +1578,8 @@ namespace SPbPUBOT
                                                                 case "зачисл":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "После зачисления первокурсникам необходимо будет предоставить некоторые медицинские документы. Ознакомиться с ними можно <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/meditsinskie-dokumenty-dlya-zachislennykh-studentov/'>здесь</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.MedicalDocuments.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -1591,8 +1592,8 @@ namespace SPbPUBOT
                                                     case "инст":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Контакты всех институтов есть вот на этой странице <a href='https://contact.spbstu.ru/'>contact.spbstu.ru</a>. Там вы найдете сайты, телефоны и соцсети наших институтов СПбПУ. У некоторых из них есть чаты абитуриентов. А если у вас вопрос по поводу образовательной программы, перспективы направления или вы не можете определиться, куда лучше поступать, то представители институтов сориентируют вас и помогут!",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -1602,8 +1603,8 @@ namespace SPbPUBOT
                                                     case "госуслуг":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "На сегодняшний день мы обрабатываем всю информацию, которая к нам поступает, но переживаем, что с портала 'Госуслуги' к нам могут прийти не все данные о поступающих из-за большого количество заявок. Поэтому мы рекомендуем вам подать заявление в Личном кабинете абитуриента на сайте университета <a href='https://enroll.spbstu.ru/sign-in'>enroll.spbstu.ru</a> - там наши модераторы скорее смогут вас найти и добавить в ранжированные списки.\n\n" +
                                                                 "Это поможет вам оперативно отслеживать свою позицию в списках, а также вносить необходимые изменения быстрее",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.AdmissionProcess.backKeyboard,
@@ -1622,8 +1623,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Есть несколько способов поступления:",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.ForeignStudents.foreignStudentsKeyboard
                                                                 );
@@ -1632,8 +1633,8 @@ namespace SPbPUBOT
                                                     case "соот":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Соотечественники имеют право поступать в СПбПУ на общих с гражданами России основаниях (то есть могут претендовать на бюджетное место).\n\n" +
                                                                 "К соотечественникам относятся\n" +
                                                                 "— граждане Российской Федерации, постоянно проживающие за пределами Российской Федерации\n" +
@@ -1649,8 +1650,8 @@ namespace SPbPUBOT
                                                     case "отдел":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Иностранные абитуриенты могут поступить в Политехнический университет через Отдел по работе с иностранными студентами. Подробности на <a href='https://www.spbstu.ru/applicants/admission-of-foreign-citizens/'>странице</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.ForeignStudents.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -1671,8 +1672,8 @@ namespace SPbPUBOT
                                         case "назад":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Выбери, какой раздел тебе наиболее подходит.",
                                                     replyMarkup: Keyboards.User.Enrollee.ChooseProfession.chooseKeyboard
                                                     );
@@ -1685,8 +1686,8 @@ namespace SPbPUBOT
                                                     case "бака":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Выберите удобное для вас представление",
                                                                 replyMarkup: Keyboards.User.Enrollee.ChooseProfession.undergraduateKeyboard
                                                                 );
@@ -1696,24 +1697,23 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
                                                                 await botClient.DeleteMessageAsync(
-                                                                    chatId: chatsUserID,
-                                                                    messageId: db.Users.Find(chatsUserID).messageMenuID
+                                                                    chatId: chatID,
+                                                                    messageId: db.Users.Find(chatID).messageMenuID
                                                                     );
 
                                                                 using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/Obrazovatelnye_programmy_bakalavriata_i_spetsialiteta.pdf"))
                                                                 {
                                                                     InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа бакалавриата и специалитета.pdf");
-                                                                    await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, inputOnlineFile);
+                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
                                                                 }
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                    chatId: chatID,
                                                                     text: "Выберите удобное для вас представление",
                                                                     replyMarkup: Keyboards.User.Enrollee.ChooseProfession.undergraduateKeyboard
                                                                     );
-                                                                db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
+                                                                db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                                 db.SaveChanges();
                                                             }
                                                         }
@@ -1728,8 +1728,8 @@ namespace SPbPUBOT
                                                     case "мага":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Выберите удобное для вас представление",
                                                                 replyMarkup: Keyboards.User.Enrollee.ChooseProfession.magistracyKeyboard
                                                                 );
@@ -1739,24 +1739,23 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
                                                                 await botClient.DeleteMessageAsync(
-                                                                    chatId: chatsUserID,
-                                                                    messageId: db.Users.Find(chatsUserID).messageMenuID
+                                                                    chatId: chatID,
+                                                                    messageId: db.Users.Find(chatID).messageMenuID
                                                                     );
 
                                                                 using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/magistr2022.pdf"))
                                                                 {
                                                                     InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа магистра.pdf");
-                                                                    await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, inputOnlineFile);
+                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
                                                                 }
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                    chatId: chatID,
                                                                     text: "Выберите удобное для вас представление",
                                                                     replyMarkup: Keyboards.User.Enrollee.ChooseProfession.undergraduateKeyboard
                                                                     );
-                                                                db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
+                                                                db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                                 db.SaveChanges();
                                                             }
                                                         }
@@ -1775,8 +1774,8 @@ namespace SPbPUBOT
                                         case "назад":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Давай знакомиться",
                                                     replyMarkup: Keyboards.User.Enrollee.AboutUniversity.aboutUniversityKeyboard
                                                     );
@@ -1785,8 +1784,8 @@ namespace SPbPUBOT
                                         case "ролик":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Полет <a href='https://www.youtube.com/watch?v=6D_iskPXBno'>над кампусом #ПолитехПетра</a>",
                                                     replyMarkup: Keyboards.User.Enrollee.AboutUniversity.backKeyboard,
                                                     parseMode: ParseMode.Html
@@ -1797,24 +1796,23 @@ namespace SPbPUBOT
                                             {
                                                 using (ApplicationContext db = new ApplicationContext())
                                                 {
-                                                    long chatsUserID = callbackQuery.Message.Chat.Id;
                                                     await botClient.DeleteMessageAsync(
-                                                        chatId: chatsUserID,
-                                                        messageId: db.Users.Find(chatsUserID).messageMenuID
+                                                        chatId: chatID,
+                                                        messageId: db.Users.Find(chatID).messageMenuID
                                                         );
 
                                                     using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/Политех.Нам нравится.pdf"))
                                                     {
                                                         InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Про Политех.pdf");
-                                                        await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, inputOnlineFile);
+                                                        await botClient.SendDocumentAsync(chatID, inputOnlineFile);
                                                     }
 
                                                     var messageID = await botClient.SendTextMessageAsync(
-                                                        chatId: callbackQuery.Message.Chat.Id,
+                                                        chatId: chatID,
                                                         text: "Давай знакомиться",
                                                         replyMarkup: Keyboards.User.Enrollee.AboutUniversity.aboutUniversityKeyboard
                                                         );
-                                                    db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
+                                                    db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                     db.SaveChanges();
                                                 }
                                             }
@@ -1822,8 +1820,8 @@ namespace SPbPUBOT
                                         case "дод":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Ежемесячно в Политехе проводятся дни открытых дверей разных институтом. С расписанием можно ознакомиться, нажав на кнопку",
                                                     replyMarkup: Keyboards.User.Enrollee.AboutUniversity.scheduleOpenDoorsKeyboard
                                                     );
@@ -1832,8 +1830,8 @@ namespace SPbPUBOT
                                         case "аудиогид":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "На площадке <a href='https://izi.travel/ru'>izi.Travel</a> доступен уникальный аудиогид по кампусу университета, который вы можете прослушать, оказавшись на нашей территории.",
                                                     replyMarkup: Keyboards.User.Enrollee.AboutUniversity.audioGuideKeyboard,
                                                     parseMode: ParseMode.Html
@@ -1843,8 +1841,8 @@ namespace SPbPUBOT
                                         case "медиа":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Соцсети и сайты для абитуриентов Политехнического",
                                                     replyMarkup: Keyboards.User.Enrollee.AboutUniversity.mediaKeyboard
                                                     );
@@ -1858,8 +1856,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Сейчас расскажем:",
                                                                 replyMarkup: Keyboards.User.Enrollee.AboutUniversity.WhyPolytech.whyPolytechKeyboard
                                                                 );
@@ -1868,8 +1866,8 @@ namespace SPbPUBOT
                                                     case "цифры":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Политехнический университет — это:\n" +
                                                                 "более 30 тысяч студентов\n" +
                                                                 "территория кампуса 120 га\n" +
@@ -1886,8 +1884,8 @@ namespace SPbPUBOT
                                                     case "полет":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Пролететь по территории Политеха и увидеть кампус можно прямо сейчас. Лови <a href='https://youtu.be/6D_iskPXBno'>видео</a>!",
                                                                 replyMarkup: Keyboards.User.Enrollee.AboutUniversity.WhyPolytech.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -1897,8 +1895,8 @@ namespace SPbPUBOT
                                                     case "ресурсы":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "— <a href='https://www.spbstu.ru/abit/bachelor/'>сайт СПбПУ с правилами поступления</a>\n" +
                                                                 "— <a href='https://vk.com/polytech_petra'>главная группа Политеха</a>\n" +
                                                                 "— <a href='https://vk.com/abit_spbstu'>группа абитуриентов Политеха</a>\n" +
@@ -1912,8 +1910,8 @@ namespace SPbPUBOT
                                                     case "экскурс":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Посетить наш вуз можно не только очно, но и дистанционно - с помощью <a href='https://vt.spbstu.ru/gz/'>виртуального тура</a> по Главному учебному корпусу Политеха!",
                                                                 replyMarkup: Keyboards.User.Enrollee.AboutUniversity.WhyPolytech.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -1934,8 +1932,8 @@ namespace SPbPUBOT
                                         case "назад":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Какой тип мероприятия или курса тебя интересует?",
                                                     replyMarkup: Keyboards.User.Enrollee.EventsCourse.basicKeyboard
                                                     );
@@ -1949,8 +1947,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Курсы какой категории вас интересуют?",
                                                                 replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.trainingCoursesKeyboard
                                                                 );
@@ -1959,8 +1957,8 @@ namespace SPbPUBOT
                                                     case "1-9":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Для данной категории в Политехническом университете существует несколько различных подразделений",
                                                                 replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.for1to9Keyboard
                                                                 );
@@ -1969,8 +1967,8 @@ namespace SPbPUBOT
                                                     case "10":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Курсы для 10 класса проводятся по следующим предметам в любой комбинации:\n" +
                                                                 "<b>Математика</b>\n" +
                                                                 "<b>Информатика</b>\n" +
@@ -1991,8 +1989,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Какие предметы вы будете сдавать?",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.for11Keyboard
                                                                             );
@@ -2001,8 +1999,8 @@ namespace SPbPUBOT
                                                                 case "осн":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Курсы для 11 класса проводятся по следующим предметам в любой комбинации:\n" +
                                                                             "<b>Математика</b>\n" +
                                                                             "<b>Информатика</b>\n" +
@@ -2024,8 +2022,8 @@ namespace SPbPUBOT
                                                                 case "иняз":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Подробная информация о курсах по иностранным языкам и запись по кнопке ниже👇",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.TrainingCourses.entryForeighLangKeyboard
                                                                             );
@@ -2034,8 +2032,8 @@ namespace SPbPUBOT
                                                                 case "ржк":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Курсы для поступающих на направление 54.03.01 Дизайн.\n" +
                                                                             "Продолжительность - 8 месяцев, с октября по май.\n" +
                                                                             "Время проведения занятий с 18:00 до 21:00 по будним дням, один раз в неделю по 4 академических часа.\n" +
@@ -2051,8 +2049,8 @@ namespace SPbPUBOT
                                                     case "колледж":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Подготовительные курсы для абитуриентов, имеющих профессиональное образование и планирующих поступать по результатам вступительных испытаний, проводимых СПбПУ самостоятельно, позволяют ознакомиться со структурой теста и основными требованиями университета к ответам. Занятия ведут разработчики заданий.\n" +
                                                                 "Продолжительность - 3 недели, с 21 июня по 10 июля, ежедневно(кроме воскресенья).\n" +
                                                                 "Время проведения занятий с 18:00 до 21:15(суббота с 10:00 до 13:15).",
@@ -2063,8 +2061,8 @@ namespace SPbPUBOT
                                                     case "мага":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Курс разработан специально для выпускников бакалавриата и специалитета, желающих поступить в Магистратуру на направление 08.04.01 Строительство\n" +
                                                                 "Продолжительность - 1 месяц\n" +
                                                                 "Время записи: май – июнь\n" +
@@ -2085,8 +2083,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Мы активно приглашаем учащихся участвовать в образовательных интенсивах.\n" +
                                                                 "Такие интенсивы - возможность улучшить свои знания в одном из любимых предметов, познакомиться с единомышленниками, прочувствовать атмосферу университета, пообщаться с университетскими преподавателями, получить памятные подарки - а в случае победы, получить дополнительные баллы при поступлении!",
                                                                 replyMarkup: Keyboards.User.Enrollee.EventsCourse.EducationalPrograms.educationalProgramsKeyboard
@@ -2096,8 +2094,8 @@ namespace SPbPUBOT
                                                     case "илп":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Инженерная лига Политеха — образовательный интенсив для школьников 9-11 классов, которые интересуются физикой, математикой и информатикой. Одна из основных целей мероприятия — полное погружение в профессиональную сферу. Открытые лекции и презентации, мастер-классы и воркшопы — это возможность для участников Инженерной лиги получить понимание отрасли, пообщаться с преподавателями и специалистами профессиональной сферы, а также найти команду единомышленников!",
                                                                 replyMarkup: Keyboards.User.Enrollee.EventsCourse.EducationalPrograms.engineeringLeagueKeyboard
                                                                 );
@@ -2106,8 +2104,8 @@ namespace SPbPUBOT
                                                     case "лш":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Летняя школа «Твой город-цифровой» - это образовательный интенсив, в рамках которого учащиеся 9-10 классов пробуют себя в качестве специалистов будущего, знакомятся с новыми разработками и технологиями Политехнического университета, участвуют в экскурсиях на ведущие предприятия и компании города, развивают свои компетенции через научно-инженерную и проектную деятельность. Немаловажное значение на Летней школе уделяется развитию soft-skills и профориентационной деятельности.",
                                                                 replyMarkup: Keyboards.User.Enrollee.EventsCourse.EducationalPrograms.summerSchoolKeyboard
                                                                 );
@@ -2116,8 +2114,8 @@ namespace SPbPUBOT
                                                     case "polycase":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Институт машиностроения, материалов и транспорта СПбПУ является постоянным организатором кейс-чемпионате «PolyCase 2021» для учащихся 9-11 классов.\n" +
                                                                 "PolyCase — уникальная возможность попробовать свои силы в решении реальных производственных задач, которые специально адаптированны для учеников среднего и средне - профессионального образования, а также познакомиться с одним из самых передовых университетов страны и получить ценные призы.",
                                                                 replyMarkup: Keyboards.User.Enrollee.EventsCourse.EducationalPrograms.polycaseKeyboard
@@ -2127,8 +2125,8 @@ namespace SPbPUBOT
                                                     case "двп":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "«Фестиваль науки – Дорога в Политех» - это школьная научно-практическая конференция для учащихся 8-11 классов. На фестивале ты сможешь представить свою работу на судейство преподавателям Политехнического университета и реализовать себя как ученый.\n" +
                                                                 "На фестивале ты можешь представить свою работу в одно из следующих категорий:\n" +
                                                                 "Биология и медицина\n" +
@@ -2149,8 +2147,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Выберите по какому признаку будут разделены олимпиады",
                                                                 replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.olympiadKeyboard
                                                                 );
@@ -2164,8 +2162,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Какой предмет вас интересует?",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.subjectKeyboard
                                                                             );
@@ -2174,8 +2172,8 @@ namespace SPbPUBOT
                                                                 case "физ":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выбирай ниже",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.Physics.physicsKeyboard
                                                                             );
@@ -2184,8 +2182,8 @@ namespace SPbPUBOT
                                                                 case "мат":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выбирай ниже",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.Mathematics.mathematicsKeyboard
                                                                             );
@@ -2194,8 +2192,8 @@ namespace SPbPUBOT
                                                                 case "инф":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выбирай ниже",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.Informatics.informaticsKeyboard
                                                                             );
@@ -2204,8 +2202,8 @@ namespace SPbPUBOT
                                                                 case "хим":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выбирай ниже",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.Chemistry.chemistryKeyboard
                                                                             );
@@ -2214,8 +2212,8 @@ namespace SPbPUBOT
                                                                 case "гум":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Всероссийская толстовская олимпиада школьников\n" +
                                                                             "Олимпиада носит имя Л.Н.Толстого – выдающегося писателя и мыслителя, художественные произведения и социально - политические работы которого составляют культурное наследие России.Название олимпиады обусловлено тем, что Л.Н.Толстой был не только великим писателем, но и философом, общественным деятелем, педагогом, создавшим свою систему образования и воспитания.\n" +
                                                                             "К участию в олимпиаду приглашаются учащиеся 10 - 11 классов, обучающиеся по образовательным программам основного общего, среднего общего и среднего - профессионального образования.\n" +
@@ -2237,8 +2235,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Какая категория олимпиад вас интересует?\n\n" +
                                                                             "P.S.\n" +
                                                                             "<a href='https://rsr-olymp.ru/about'>РСОШ</a> - олимпиады Российского совета олимпиад школьников\n" +
@@ -2251,8 +2249,8 @@ namespace SPbPUBOT
                                                                 case "рсош":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выбирай ниже",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.rsochKeyboard
                                                                             );
@@ -2269,8 +2267,8 @@ namespace SPbPUBOT
                                                                 case "назад":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Грацуем!",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.olympiadManKeyboard
                                                                             );
@@ -2279,8 +2277,8 @@ namespace SPbPUBOT
                                                                 case "бви":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "У победителей и призеров олимпиад есть особое право поступления без вступительных испытаний. О том, как им воспользоваться, узнай <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/olympics/'>по ссылке</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -2290,8 +2288,8 @@ namespace SPbPUBOT
                                                                 case "соотв":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Соответствие предметов олимпиад и направлений СПбПУ можно проверить в <a href='https://www.spbstu.ru/abit/bachelor/oznakomitsya-with-the-regulations/olympics/the-line-profile-all-russian-olympiad-/'>этом положении</a>.",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.backKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -2308,8 +2306,8 @@ namespace SPbPUBOT
                                         case "соб":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "В этом блоке вы сможете узнать подробную информацию о ближайших мероприятиях университета и партнеров. Описание всех мероприятий партнеров у нас на сайте.",
                                                     replyMarkup: Keyboards.User.Enrollee.EventsCourse.closeEventsKeyboard
                                                     );
@@ -2326,8 +2324,8 @@ namespace SPbPUBOT
                                         case "назад":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Выберите интересующую категорию",
                                                     replyMarkup: Keyboards.User.Enrollee.Questions.basicQuestionsKeyboard
                                                     );
@@ -2341,8 +2339,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "1.Вся информация о поступлении представлена на сайте в <a href='https://www.spbstu.ru/abit/bachelor/'>разделе</a>.\n" +
                                                                 "2.Рекомендуем заранее ознакомиться с основными датами календаря абитуриента.\n" +
                                                                 "3.К сожалению, мы не можем гарантировать достоверность предоставленной информации сторонними ресурсами(сайтами образовательных организаций и порталов), " +
@@ -2360,8 +2358,8 @@ namespace SPbPUBOT
                                                     case "кален":
                                                         {
                                                             await botClient.EditMessageReplyMarkupAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.Admission.calendarKeyboard
                                                                 );
                                                         }
@@ -2377,8 +2375,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "1.Документы, необходимые для поступления можно подать в электронной форме через личный кабинет абитуриента. Сформированное в личном кабинете заявление необходимо распечатать, подписать, отсканировать и в формате .pdf загрузить в <a href='https://enroll.spbstu.ru/'>Личный кабинет</a> абитуриента в разделе “Загрузить документы”.\n" +
                                                                 "2.Для подтверждения ваших баллов ЕГЭ, вам не требуется предоставлять никаких документов.Если вы не знаете или не помните результатов ЕГЭ, вы можете подавать документы, так как все данные подгружаются автоматически из федеральной базы ЕГЭ.\n" +
                                                                 "3.Если ваши баллы за предмет меньше установленного университетом минимума, то вы не можете участвовать в конкурсе на поступление.С минимальными(пороговыми) баллами вы можете ознакомиться ниже.\n" +
@@ -2398,8 +2396,8 @@ namespace SPbPUBOT
                                                     case "кален":
                                                         {
                                                             await botClient.EditMessageReplyMarkupAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.Documents.calendarKeyboard
                                                                 );
                                                         }
@@ -2410,8 +2408,8 @@ namespace SPbPUBOT
                                         case "индивид.достижения":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "1.Максимальная сумма баллов, которые вы можете получить за индивидуальные достижения - 10 баллов.\n\n" +
                                                     "2.Если вы являетесь победителем/призёром заключительного этапа Всероссийской олимпиады школьников, то вы можете быть зачисленными в университет без вступительных испытаний.\n\n" +
                                                     "3.Если вы являетесь победителем/призёром олимпиады РСОШ с ЕГЭ не менее 75 баллов, то вы можете быть зачисленными в университет без вступительных испытаний.\n\n" +
@@ -2430,8 +2428,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Здесь есть все, что вы хотели знать о вступительных испытаниях:",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.EntranceTests.entranceTestsKeyboard
                                                                 );
@@ -2440,8 +2438,8 @@ namespace SPbPUBOT
                                                     case "лица":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Нужно ли и можно ли тебе сдавать вступительные испытания Политеха?\nПроверь на сайте, относишься ли ты <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/allowed-pass-entrance-test/'>к этим категориям</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.EntranceTests.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -2451,8 +2449,8 @@ namespace SPbPUBOT
                                                     case "перечень":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Перечень вступительных испытаний есть <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/the-list-of-entrance-examinations/'>здесь</a>. Обрати, пожалуйста, внимание, что лица, имеющие профессиональное образование (среднее профессиональное или высшее), сдают отдельный перечень вступительных испытаний (см. вступительные испытания для лиц, имеющих профессиональное образование).",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.EntranceTests.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -2462,8 +2460,8 @@ namespace SPbPUBOT
                                                     case "расписание":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Расписание вступительных испытаний будет по <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/the-schedule-of-entrance-examinations/'>ссылке</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.EntranceTests.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -2473,8 +2471,8 @@ namespace SPbPUBOT
                                                     case "программы":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "С программами вступительных испытаний можно ознакомиться <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/program-of-entrance-examinations/'>здесь</a>. А образцы заданий доступны <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/obraztsy-zadaniy-vstupitelnykh-ispytaniy/'>тут</a>.",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.EntranceTests.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -2484,8 +2482,8 @@ namespace SPbPUBOT
                                                     case "дизайн":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "На Дизайн и Дизайн архитектурной среды сдавать творческие вступительные испытания необходимо всем поступающим. А также необходимо учитывать, что окончание приема документов наступает раньше — 7 июля. Подробная информация есть <a href='https://www.spbstu.ru/abit/bachelor/entrance-test/vstupitelnye-ispytaniya-po-napravleniyu-podgotovki-dizayn/'>на странице</a>",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.EntranceTests.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -2495,8 +2493,8 @@ namespace SPbPUBOT
                                                     case "2022":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "В 2022 году вступительные испытания будут проходить дистанционно на портале электронного обучения СПбПУ (<a href='https://lms.spbstu.ru'>LMS Moodle</a>)",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.EntranceTests.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -2509,8 +2507,8 @@ namespace SPbPUBOT
                                         case "после поступления":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                        chatId: callbackQuery.Message.Chat.Id,
-                                                        messageId: callbackQuery.Message.MessageId,
+                                                        chatId: chatID,
+                                                        messageId: messID,
                                                         text: "1.В военном учебном центре СПбПУ осуществляется военная подготовка студентов. Узнать о ней подробнее можно на <a href='https://fvo.spbstu.ru/'>сайте</a>.\n" +
                                                         "2.Приёмная комиссия занимается только вопросами поступления на первый курс.Вопросами перевода занимаются дирекции институтов.\n" +
                                                         "3.Согласно порядку приёма, не предусмотрена сокращённая форма обучения, однако если вы уже имеете среднее профессиональное образование или высшее образование, то некоторые дисциплины могут быть перезачтены в индивидуальном порядке при совпадении учебных планов.\n" +
@@ -2523,8 +2521,8 @@ namespace SPbPUBOT
                                         case "стип/гранты":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Виды Стипендий:\n\n" +
                                                     "1.Государственная академическая стипендия\n" +
                                                     "-выплачивается всем студентам-бюджетникам в первом семестре обучения\n" +
@@ -2556,8 +2554,8 @@ namespace SPbPUBOT
                                         case "перевод в политех":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                        chatId: callbackQuery.Message.Chat.Id,
-                                                        messageId: callbackQuery.Message.MessageId,
+                                                        chatId: chatID,
+                                                        messageId: messID,
                                                         text: "С правилами перевода в Политехнический университет из других вузов можно ознакомиться <a href='https://www.spbstu.ru/students/transferring-students-from-other-universities-to-spbpu/'>здесь</a>",
                                                         replyMarkup: Keyboards.User.Enrollee.Questions.backKeyboard,
                                                         parseMode: ParseMode.Html
@@ -2572,8 +2570,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Расскажем все про общежития:",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.Hostel.hostelKeyboard
                                                                 );
@@ -2582,8 +2580,8 @@ namespace SPbPUBOT
                                                     case "репортаж":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Специально для наших абитуриентов мы съездили в один из корпусов общежитий СПбПУ и показали, как живут студенты, а также побеседовали с директором Студенческого городка. Включайте — и вы сразу получите ответы на 99% ваших вопросов об общежитии!\n vk.cc/c9r7IY",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.Hostel.backKeyboard
                                                                 );
@@ -2592,8 +2590,8 @@ namespace SPbPUBOT
                                                     case "получу ли я?":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "В первую очередь заселяют студентов очного отделения, обучающихся на бюджете. \nС порядком распределения мест можно ознакомиться <a href='https://www.spbstu.ru/abit/events/poryadok-ocherednosti-predostavleniya-mest-v-obshchezhitiyakh-studgorodka-spbpu/'>здесь</a>",
                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.Hostel.backKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -2607,8 +2605,8 @@ namespace SPbPUBOT
                                                                 case "карта":
                                                                     {
                                                                         await botClient.EditMessageTextAsync(
-                                                                            chatId: callbackQuery.Message.Chat.Id,
-                                                                            messageId: callbackQuery.Message.MessageId,
+                                                                            chatId: chatID,
+                                                                            messageId: messID,
                                                                             text: "Выберите нужное общежитие или откройте <a href='https://www.spbstu.ru/campus-map/'>карту кампуса</a>",
                                                                             replyMarkup: Keyboards.User.Enrollee.Questions.Hostel.hostelMapKeyboard,
                                                                             parseMode: ParseMode.Html
@@ -2619,27 +2617,30 @@ namespace SPbPUBOT
                                                                     {
                                                                         using(ApplicationContext db = new ApplicationContext())
                                                                         {
-                                                                            long chatsUserID = callbackQuery.Message.Chat.Id;
                                                                             await botClient.DeleteMessageAsync(
-                                                                                chatId: chatsUserID,
-                                                                                messageId: db.Users.Find(chatsUserID).messageMenuID
+                                                                                chatId: chatID,
+                                                                                messageId: db.Users.Find(chatID).messageMenuID
                                                                                 );
+
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: $"Общежитие {partsQuery[4]}"
                                                                                 );
+
                                                                             await botClient.SendLocationAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 latitude: Lists.hostelList[partsQuery[4]].Latitude,
                                                                                 longitude: Lists.hostelList[partsQuery[4]].Longitude
                                                                                 );
+
                                                                             var messageID = await botClient.SendTextMessageAsync(
-                                                                                chatId: callbackQuery.Message.Chat.Id,
+                                                                                chatId: chatID,
                                                                                 text: "Выберите нужное общежитие или откройте <a href='https://www.spbstu.ru/campus-map/'>карту кампуса</a>",
                                                                                 replyMarkup: Keyboards.User.Enrollee.Questions.Hostel.hostelMapKeyboard,
                                                                                 parseMode: ParseMode.Html
                                                                                 );
-                                                                            db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
+
+                                                                            db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                                             db.SaveChanges();
                                                                         }
                                                                     }
@@ -2657,14 +2658,14 @@ namespace SPbPUBOT
                                                     case "оператор":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Для того, чтобы начать диалог с представителем Политеха, нажмите кнопку ниже.\n\n" +
                                                                 "А ещё вы можете связаться с Приемной комиссией Политеха по телефону\n" +
                                                                 "8(812) 775 - 05 - 30 — для звонков из Санкт - Петербурга\n" +
                                                                 "8(800) 707 - 18 - 99 — для звонков из любого региона РФ(звонок бесплатный)\n\n" +
                                                                 "Или написать на почту abitur@spbstu.ru.",
-                                                                replyMarkup: Keyboards.User.callOperatorKeyboard
+                                                                replyMarkup: Keyboards.User.Enrollee.callOperatorKeyboard
                                                                 );
                                                         }
                                                         break;
@@ -2672,41 +2673,42 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
                                                                 await botClient.DeleteMessageAsync(
-                                                                    chatId: chatsUserID,
-                                                                    messageId: db.Users.Find(chatsUserID).messageMenuID
+                                                                    chatId: chatID,
+                                                                    messageId: db.Users.Find(chatID).messageMenuID
                                                                     );
-                                                                if (db.UserAssistance.FirstOrDefault(k => k.UserID == chatsUserID) == null)
+                                                                if (db.UserAssistance.FirstOrDefault(k => k.UserID == chatID) == null)
                                                                 {
                                                                     db.UserAssistance.Add(new UserAssistance()
                                                                     {
-                                                                        UserID = chatsUserID,
+                                                                        UserID = chatID,
                                                                         Username = callbackQuery.From.Username
                                                                     });
 
                                                                     await botClient.SendTextMessageAsync(
-                                                                        chatId: chatsUserID,
-                                                                        text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора"
+                                                                        chatId: chatID,
+                                                                        text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                        "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                         );
                                                                 }
                                                                 else
                                                                 {
                                                                     await botClient.SendTextMessageAsync(
-                                                                        chatId: chatsUserID,
-                                                                        text: "Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора"
+                                                                        chatId: chatID,
+                                                                        text: "Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                        "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                         );
                                                                 }
                                                                 var messageID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                    chatId: chatID,
                                                                     text: "Для того, чтобы начать диалог с представителем Политеха, нажмите кнопку ниже.\n\n" +
                                                                     "А ещё вы можете связаться с Приемной комиссией Политеха по телефону\n" +
                                                                     "8(812) 775 - 05 - 30 — для звонков из Санкт - Петербурга\n" +
                                                                     "8(800) 707 - 18 - 99 — для звонков из любого региона РФ(звонок бесплатный)\n\n" +
                                                                     "Или написать на почту abitur@spbstu.ru.",
-                                                                    replyMarkup: Keyboards.User.callOperatorKeyboard
+                                                                    replyMarkup: Keyboards.User.Enrollee.callOperatorKeyboard
                                                                     );
-                                                                db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
+                                                                db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                                 db.SaveChanges();
                                                             }
                                                         }
@@ -2728,8 +2730,8 @@ namespace SPbPUBOT
                             case "назад":
                                 {
                                     await botClient.EditMessageTextAsync(
-                                       chatId: callbackQuery.Message.Chat.Id,
-                                       messageId: callbackQuery.Message.MessageId,
+                                       chatId: chatID,
+                                       messageId: messID,
                                        text: "Выбери одну из категорий, чтобы узнать больше",
                                        replyMarkup: Keyboards.User.Student.startKeyboard
                                        );
@@ -2743,8 +2745,8 @@ namespace SPbPUBOT
                                         case "назад":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                   chatId: callbackQuery.Message.Chat.Id,
-                                                   messageId: callbackQuery.Message.MessageId,
+                                                   chatId: chatID,
+                                                   messageId: messID,
                                                    text: "Выберите интересующую категорию",
                                                    replyMarkup: Keyboards.User.Student.Questions.basicQuestionsKeyboard
                                                    );
@@ -2753,8 +2755,8 @@ namespace SPbPUBOT
                                         case "справки":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                   chatId: callbackQuery.Message.Chat.Id,
-                                                   messageId: callbackQuery.Message.MessageId,
+                                                   chatId: chatID,
+                                                   messageId: messID,
                                                    text: "В настоящее время в 1-ом учебном корпусе и в Главном учебном корпусе функционируют терминалы (электронные киоски), расположенные в вестибюлях первого этажа зданий.\n" +
                                                    "Посредством указанных терминалов студенты могут самостоятельно оформить и получить на руки ряд справок:\n" +
                                                    "Справки студентам по месту требования\n" +
@@ -2772,8 +2774,8 @@ namespace SPbPUBOT
                                         case "перех":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                   chatId: callbackQuery.Message.Chat.Id,
-                                                   messageId: callbackQuery.Message.MessageId,
+                                                   chatId: chatID,
+                                                   messageId: messID,
                                                    text: "О переводе в СПбПУ студентов из других вузов\n\n" +
                                                    "Обращаем внимание на то, что переводы из других образовательных организаций для обучения на первом курсе(году обучения) не осуществляются.Прием на первый курс(год обучения) может производиться только через приемную комиссию.\n\n" +
                                                    "С алгоритмом можно ознакомиться ниже",
@@ -2789,8 +2791,8 @@ namespace SPbPUBOT
                                                     case "назад":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                               chatId: callbackQuery.Message.Chat.Id,
-                                                               messageId: callbackQuery.Message.MessageId,
+                                                               chatId: chatID,
+                                                               messageId: messID,
                                                                text: "Приём в ВУЦ с 2017 года осуществляется только для подготовки по программам обучения офицеров запаса студентов технического профиля подготовки.\n\n" +
                                                                "В наборе участвуют студенты 2 курса, срок обучения - 5 семестров (4,5,6,7,8 - семестры обучения), после окончания подготовки в ВУЦ, студенты проходят стажировку в одной из воинских частей. Срок стажировки - месяц. Набор студентов, обучающихся (поступающих) в магистратуре - на данный момент - <b>не осуществляется</b>.\n\n" +
                                                                "Прием студентов с других ВУЗов, не проводится, так как, в ВУЦ на данный момент не организовано обучение по программам солдат, сержантов запаса.",
@@ -2802,8 +2804,8 @@ namespace SPbPUBOT
                                                     case "набкаф":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                               chatId: callbackQuery.Message.Chat.Id,
-                                                               messageId: callbackQuery.Message.MessageId,
+                                                               chatId: chatID,
+                                                               messageId: messID,
                                                                text: "<b>Кафедра ВКС</b>\n" +
                                                                "Физико-механический институт\n" +
                                                                "Институт биомедицинских систем и технологий\n" +
@@ -2826,8 +2828,8 @@ namespace SPbPUBOT
                                                     case "предотбор":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                               chatId: callbackQuery.Message.Chat.Id,
-                                                               messageId: callbackQuery.Message.MessageId,
+                                                               chatId: chatID,
+                                                               messageId: messID,
                                                                text: "Предварительный отбор\n\n" +
                                                                "Написать заявление и принести его на кафедру ВУЦ (ВКС, связи, цикл ОВП) вместе с 2 фотографиями 3х4 черно-белые(можно цветные) без уголка\n" +
                                                                "Заявление на поступление(Строку - наименование военно - учетной специальности - оставить свободной).\n" +
@@ -2843,8 +2845,8 @@ namespace SPbPUBOT
                                                     case "оснотбор":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                               chatId: callbackQuery.Message.Chat.Id,
-                                                               messageId: callbackQuery.Message.MessageId,
+                                                               chatId: chatID,
+                                                               messageId: messID,
                                                                text: "1. Сдача нормативов по физической подготовке (график сдачи по институтам будет указан сайте ВУЦ)\n" +
                                                                "2. Поступающие в ВУЦ студенты оформляют допуск и договор об обучении (при зачислении)." +
                                                                "3. Проводится работа конкурсной комиссии, по результатам которой составляется приказ о зачислении.\n\n" +
@@ -2859,8 +2861,8 @@ namespace SPbPUBOT
                                                     case "инфа":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                               chatId: callbackQuery.Message.Chat.Id,
-                                                               messageId: callbackQuery.Message.MessageId,
+                                                               chatId: chatID,
+                                                               messageId: messID,
                                                                text: "Справочная информация:\n\n" +
                                                                "Телефон кафедры ВКС\n" +
                                                                "+7 (812) 552-87-29\n" +
@@ -2879,8 +2881,8 @@ namespace SPbPUBOT
                                         case "иностранцу":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                   chatId: callbackQuery.Message.Chat.Id,
-                                                   messageId: callbackQuery.Message.MessageId,
+                                                   chatId: chatID,
+                                                   messageId: messID,
                                                    text: "<b>Внимание!</b>\n" +
                                                    "Горячая линия Международных служб с ПН - ВС по всем вопросам\n" +
                                                    "(в т.ч.WhatsApp и Telegram):\n" +
@@ -2898,8 +2900,8 @@ namespace SPbPUBOT
                                         case "стип":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Виды Стипендий:\n\n" +
                                                     "1.Государственная академическая стипендия\n" +
                                                     "-выплачивается всем студентам-бюджетникам в первом семестре обучения\n" +
@@ -2931,8 +2933,8 @@ namespace SPbPUBOT
                                         case "соцоб":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                   chatId: callbackQuery.Message.Chat.Id,
-                                                   messageId: callbackQuery.Message.MessageId,
+                                                   chatId: chatID,
+                                                   messageId: messID,
                                                    text: "<b>Социальное обеспечение</b>\n\n" +
                                                    "Социальное обеспечение обучающихся СПбПУ Петра Великого – это система мер, устанавливаемая законами и иными нормативными правовыми актами и направленная на создание и поддержание достойных условий жизнедеятельности обучающихся.\n\n" +
                                                    "Основными направлениями социального обеспечения обучающихся являются: ",
@@ -2944,8 +2946,8 @@ namespace SPbPUBOT
                                         case "медобсл":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                   chatId: callbackQuery.Message.Chat.Id,
-                                                   messageId: callbackQuery.Message.MessageId,
+                                                   chatId: chatID,
+                                                   messageId: messID,
                                                    text: "<b>Медицинское обслуживание</b>\n\n" +
                                                    "1.Поликлиника №76\n" +
                                                    "2.Центр охраны репродуктивного здоровья\n" +
@@ -2962,8 +2964,8 @@ namespace SPbPUBOT
                                                     case "опер":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Для того, чтобы начать диалог с представителем Политеха, нажмите кнопку ниже.\n\n" +
                                                                 "А ещё вы можете связаться с Приемной комиссией Политеха по телефону\n" +
                                                                 "8(812) 775 - 05 - 30 — для звонков из Санкт - Петербурга\n" +
@@ -2977,33 +2979,34 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
                                                                 await botClient.DeleteMessageAsync(
-                                                                    chatId: chatsUserID,
-                                                                    messageId: db.Users.Find(chatsUserID).messageMenuID
+                                                                    chatId: chatID,
+                                                                    messageId: db.Users.Find(chatID).messageMenuID
                                                                     );
-                                                                if (db.UserAssistance.FirstOrDefault(k => k.UserID == chatsUserID) == null)
+                                                                if (db.UserAssistance.FirstOrDefault(k => k.UserID == chatID) == null)
                                                                 {
                                                                     db.UserAssistance.Add(new UserAssistance()
                                                                     {
-                                                                        UserID = chatsUserID,
+                                                                        UserID = chatID,
                                                                         Username = callbackQuery.From.Username
                                                                     });
 
                                                                     await botClient.SendTextMessageAsync(
-                                                                        chatId: chatsUserID,
-                                                                        text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора"
+                                                                        chatId: chatID,
+                                                                        text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                        "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                         );
                                                                 }
                                                                 else
                                                                 {
                                                                     await botClient.SendTextMessageAsync(
-                                                                        chatId: chatsUserID,
-                                                                        text: "Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора"
+                                                                        chatId: chatID,
+                                                                        text: "Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                        "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                         );
                                                                 }
                                                                 var messageID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                    chatId: chatID,
                                                                     text: "Для того, чтобы начать диалог с представителем Политеха, нажмите кнопку ниже.\n\n" +
                                                                     "А ещё вы можете связаться с Приемной комиссией Политеха по телефону\n" +
                                                                     "8(812) 775 - 05 - 30 — для звонков из Санкт - Петербурга\n" +
@@ -3011,7 +3014,7 @@ namespace SPbPUBOT
                                                                     "Или написать на почту abitur@spbstu.ru.",
                                                                     replyMarkup: Keyboards.User.Student.Questions.callOperatorKeyboard
                                                                     );
-                                                                db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
+                                                                db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                                 db.SaveChanges();
                                                             }
                                                         }
@@ -3030,8 +3033,8 @@ namespace SPbPUBOT
                                         case "назад":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                    chatId: callbackQuery.Message.Chat.Id,
-                                                    messageId: callbackQuery.Message.MessageId,
+                                                    chatId: chatID,
+                                                    messageId: messID,
                                                     text: "Выберите интересующий тип здания ниже или откройте <a href='https://www.spbstu.ru/campus-map/'>карту кампуса</a>",
                                                     replyMarkup: Keyboards.User.Student.Buildings.chooseKeyboard,
                                                     parseMode: ParseMode.Html
@@ -3045,8 +3048,8 @@ namespace SPbPUBOT
                                                     case "корпуса":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                               chatId: callbackQuery.Message.Chat.Id,
-                                                               messageId: callbackQuery.Message.MessageId,
+                                                               chatId: chatID,
+                                                               messageId: messID,
                                                                text: "Выберите нужный корпус или откройте <a href='https://www.spbstu.ru/campus-map/'>карту кампуса</a>",
                                                                replyMarkup: Keyboards.User.Student.Buildings.corpsMapKeyboard,
                                                                parseMode: ParseMode.Html
@@ -3057,10 +3060,9 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
                                                                 await botClient.DeleteMessageAsync(
-                                                                    chatId: chatsUserID,
-                                                                    messageId: db.Users.Find(chatsUserID).messageMenuID
+                                                                    chatId: chatID,
+                                                                    messageId: db.Users.Find(chatID).messageMenuID
                                                                     );
 
                                                                 switch (partsQuery[3])
@@ -3068,7 +3070,7 @@ namespace SPbPUBOT
                                                                     case "гз":
                                                                         {
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: "Главный учебный корпус"
                                                                                 );
                                                                         }
@@ -3076,7 +3078,7 @@ namespace SPbPUBOT
                                                                     case "спорт":
                                                                         {
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: "Спортивный комплекс"
                                                                                 );
                                                                         }
@@ -3084,7 +3086,7 @@ namespace SPbPUBOT
                                                                     case "лаб":
                                                                         {
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: "Лабораторный корпус"
                                                                                 );
                                                                         }
@@ -3092,7 +3094,7 @@ namespace SPbPUBOT
                                                                     case "хим":
                                                                         {
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: "Химический корпус"
                                                                                 );
                                                                         }
@@ -3100,7 +3102,7 @@ namespace SPbPUBOT
                                                                     case "башня":
                                                                         {
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: "Гидробашня"
                                                                                 );
                                                                         }
@@ -3108,7 +3110,7 @@ namespace SPbPUBOT
                                                                     case "мех":
                                                                         {
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: "Механический корпуc"
                                                                                 );
                                                                         }
@@ -3116,7 +3118,7 @@ namespace SPbPUBOT
                                                                     case "г1":
                                                                         {
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: "Гидрокорпус-1"
                                                                                 );
                                                                         }
@@ -3124,7 +3126,7 @@ namespace SPbPUBOT
                                                                     case "г2":
                                                                         {
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: "Гидрокорпус-2"
                                                                                 );
                                                                         }
@@ -3132,7 +3134,7 @@ namespace SPbPUBOT
                                                                     default:
                                                                         {
                                                                             await botClient.SendTextMessageAsync(
-                                                                                chatId: chatsUserID,
+                                                                                chatId: chatID,
                                                                                 text: $"Корпус {partsQuery[3]}"
                                                                                 );
                                                                         }
@@ -3140,18 +3142,18 @@ namespace SPbPUBOT
                                                                 }
 
                                                                 await botClient.SendLocationAsync(
-                                                                    chatId: chatsUserID,
+                                                                    chatId: chatID,
                                                                     latitude: Lists.corpsList[partsQuery[3]].Latitude,
                                                                     longitude: Lists.corpsList[partsQuery[3]].Longitude
                                                                     );
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                    chatId: chatID,
                                                                     text: "Выберите нужный корпус или откройте <a href='https://www.spbstu.ru/campus-map/'>карту кампуса</a>",
                                                                     replyMarkup: Keyboards.User.Student.Buildings.corpsMapKeyboard,
                                                                     parseMode: ParseMode.Html
                                                                     );
-                                                                db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
+                                                                db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                                 db.SaveChanges();
                                                             }
                                                         }
@@ -3166,8 +3168,8 @@ namespace SPbPUBOT
                                                     case "общежития":
                                                         {
                                                             await botClient.EditMessageTextAsync(
-                                                                chatId: callbackQuery.Message.Chat.Id,
-                                                                messageId: callbackQuery.Message.MessageId,
+                                                                chatId: chatID,
+                                                                messageId: messID,
                                                                 text: "Выберите нужное общежитие или откройте <a href='https://www.spbstu.ru/campus-map/'>карту кампуса</a>",
                                                                 replyMarkup: Keyboards.User.Student.Buildings.hostelMapKeyboard,
                                                                 parseMode: ParseMode.Html
@@ -3178,29 +3180,28 @@ namespace SPbPUBOT
                                                         {
                                                             using (ApplicationContext db = new ApplicationContext())
                                                             {
-                                                                long chatsUserID = callbackQuery.Message.Chat.Id;
                                                                 await botClient.DeleteMessageAsync(
-                                                                    chatId: chatsUserID,
-                                                                    messageId: db.Users.Find(chatsUserID).messageMenuID
+                                                                    chatId: chatID,
+                                                                    messageId: db.Users.Find(chatID).messageMenuID
                                                                     );
 
                                                                 await botClient.SendTextMessageAsync(
-                                                                    chatId: chatsUserID,
+                                                                    chatId: chatID,
                                                                     text: $"Общежитие {partsQuery[3]}"
                                                                     );
                                                                 await botClient.SendLocationAsync(
-                                                                    chatId: chatsUserID,
+                                                                    chatId: chatID,
                                                                     latitude: Lists.hostelList[partsQuery[3]].Latitude,
                                                                     longitude: Lists.hostelList[partsQuery[3]].Longitude
                                                                     );
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
-                                                                    chatId: callbackQuery.Message.Chat.Id,
+                                                                    chatId: chatID,
                                                                     text: "Выберите нужное общежитие или откройте <a href='https://www.spbstu.ru/campus-map/'>карту кампуса</a>",
                                                                     replyMarkup: Keyboards.User.Student.Buildings.hostelMapKeyboard,
                                                                     parseMode: ParseMode.Html
                                                                     );
-                                                                db.Users.Find(chatsUserID).messageMenuID = messageID.MessageId;
+                                                                db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                                 db.SaveChanges();
                                                             }
                                                         }
@@ -3214,8 +3215,8 @@ namespace SPbPUBOT
                             case "расписание":
                                 {
                                     await botClient.EditMessageTextAsync(
-                                       chatId: callbackQuery.Message.Chat.Id,
-                                       messageId: callbackQuery.Message.MessageId,
+                                       chatId: chatID,
+                                       messageId: messID,
                                        text: "Расписание лучшего всего смотреть на сайте или скачать приложение для телефона",
                                        replyMarkup: Keyboards.User.Student.Timetable.timetableKeyboard
                                        );
@@ -3229,8 +3230,8 @@ namespace SPbPUBOT
                                         case "назад":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                   chatId: callbackQuery.Message.Chat.Id,
-                                                   messageId: callbackQuery.Message.MessageId,
+                                                   chatId: chatID,
+                                                   messageId: messID,
                                                    text: "Выберите категорию ниже",
                                                    replyMarkup: Keyboards.User.Student.Links.linksKeyboard
                                                    );
@@ -3239,8 +3240,8 @@ namespace SPbPUBOT
                                         case "вк":
                                             {
                                                 await botClient.EditMessageTextAsync(
-                                                   chatId: callbackQuery.Message.Chat.Id,
-                                                   messageId: callbackQuery.Message.MessageId,
+                                                   chatId: chatID,
+                                                   messageId: messID,
                                                    text: "Выберите категорию ниже",
                                                    replyMarkup: Keyboards.User.Student.Links.linksKeyboard
                                                    );
@@ -3282,8 +3283,9 @@ namespace SPbPUBOT
                     break;
                 case "назад":
                     {
-                        await botClient.SendTextMessageAsync(
+                        await botClient.EditMessageTextAsync(
                             chatId: chatID,
+                            messageId: messID,
                             text: "Выбери кем ты являешься",
                             replyMarkup: Keyboards.User.chooseKeyboard
                             );
@@ -3320,8 +3322,8 @@ namespace SPbPUBOT
                         {
                             await botClient.SendTextMessageAsync(
                                 chatId: chatsMainID,
-                                text: "Введите id пользователя в формате:\n" +
-                                "'id:id_пользователя'"
+                                text: "Введите ID пользователя в формате:\n" +
+                                "'id:XXXXXXXXXX'"
                                 );
                         }
                         break;
@@ -3658,10 +3660,10 @@ namespace SPbPUBOT
             UserAssistance userInChat;
 
 
-            await botClient.SendChatActionAsync( // анимация "Печатать", пока получается информация из бд
-                    chatId: chatsUserID,
-                    chatAction: ChatAction.Typing
-                    );
+            //await botClient.SendChatActionAsync( // анимация "Печатать", пока получается информация из бд
+            //        chatId: chatsUserID,
+            //        chatAction: ChatAction.Typing
+            //        );
 
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -3788,6 +3790,14 @@ namespace SPbPUBOT
                                 db.Users.Find(chatsUserID).messageMenuID = messageMenu.MessageId;
                                 db.SaveChanges();
                             }
+                        }
+                        break;
+                    case "#ямыартемсухов":
+                        {
+                            await botClient.SendTextMessageAsync(
+                                chatId: chatsUserID,
+                                text: "О, ты тоже в этом движении?🥵"
+                                );
                         }
                         break;
                     default:

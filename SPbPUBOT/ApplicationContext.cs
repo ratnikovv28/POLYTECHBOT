@@ -17,7 +17,7 @@ namespace SPbPUBOT
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=polybotdb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Data Source=mssql-77678-0.cloudclusters.net,12502;Initial Catalog=polytemporaryDB;Persist Security Info=True;User ID=MainOpeartor;Password=Mainoper0");
         }
     }
 }
