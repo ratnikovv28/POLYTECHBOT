@@ -26,6 +26,8 @@ namespace SPbPUBOT
             Console.ReadLine();
 
             cts.Cancel(); // Send cancellation request to stop bot
+
+            string a = Console.ReadLine();
         }
     }
 }
