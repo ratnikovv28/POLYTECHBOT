@@ -94,7 +94,7 @@ namespace SPbPUBOT
                                     await botClient.EditMessageTextAsync(
                                         chatId: chatID,
                                         messageId: messID,
-                                        text: "Выбери одну из категорий, чтобы узнать больше",
+                                        text: "Абитуриент, выбери интересующий раздел",
                                         replyMarkup: Keyboards.User.Enrollee.startKeyboard
                                         );
                                 }
@@ -109,7 +109,7 @@ namespace SPbPUBOT
                                                 await botClient.EditMessageTextAsync(
                                                     chatId: chatID,
                                                     messageId: messID,
-                                                    text: "Чтобы изучить вопрос более детально выбери категорию, к которой ты относишься",
+                                                    text: "Чтобы изучить вопрос поступления более детально выбери категорию, к которой ты относишься",
                                                     replyMarkup: Keyboards.User.Enrollee.Admission.basicKeyboard
                                                     );
                                             }
@@ -124,7 +124,7 @@ namespace SPbPUBOT
                                                             await botClient.EditMessageTextAsync(
                                                                 chatId: chatID,
                                                                 messageId: messID,
-                                                                text: "Вот вопросы, наиболее часто интересующие наших абитуриентов:",
+                                                                text: "Вот вопросы, наиболее часто интересующие наших абитуриентов",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.School.afterSchoolKeyboard
                                                                 );
                                                         }
@@ -139,7 +139,7 @@ namespace SPbPUBOT
                                                                         await botClient.EditMessageTextAsync(
                                                                             chatId: chatID,
                                                                             messageId: messID,
-                                                                            text: "Ответим на все вопросы про подачу документов:",
+                                                                            text: "Ответим на все вопросы про подачу документов",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.Documents.documentsKeyboard
                                                                             );
                                                                     }
@@ -219,12 +219,9 @@ namespace SPbPUBOT
                                                                                 messageId: db.Users.Find(chatsUserID).messageMenuID
                                                                                 );
 
-                                                                            using (FileStream stream = System.IO.File.OpenRead(Lists.pointsList[partsQuery[4]]))
-                                                                            {
-                                                                                InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, $"Баллы {partsQuery[4]}.pdf");
-                                                                                await botClient.SendDocumentAsync(chatID, inputOnlineFile);
-                                                                            }
-
+                                                                            string link = $"https://github.com/ratnikovv28/POLYTECHBOT/raw/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/%D0%91%D0%B0%D0%BB%D0%BB%D1%8B/{partsQuery[4]}.pdf";
+                                                                            await botClient.SendDocumentAsync(chatID, link);
+                                                                            
                                                                             var messageID = await botClient.SendTextMessageAsync(
                                                                                 chatId: chatID,
                                                                                 text: "Выберите год поступления",
@@ -259,11 +256,9 @@ namespace SPbPUBOT
                                                                     messageId: db.Users.Find(chatsUserID).messageMenuID
                                                                     );
 
-                                                                using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/Obrazovatelnye_programmy_bakalavriata_i_spetsialiteta.pdf"))
-                                                                {
-                                                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа бакалавриата и специалитета.pdf");
-                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
-                                                                }
+                                                                string docLink = "https://github.com/ratnikovv28/POLYTECHBOT/raw/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/Obrazovatelnye_programmy_bakalavriata_i_spetsialiteta.pdf";
+
+                                                                await botClient.SendDocumentAsync(chatID, docLink);
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
                                                                     chatId: chatID,
@@ -562,7 +557,7 @@ namespace SPbPUBOT
                                                             await botClient.EditMessageTextAsync(
                                                                 chatId: chatID,
                                                                 messageId: messID,
-                                                                text: "Самые популярные вопросы наших абитуриентов:",
+                                                                text: "Самые популярные вопросы наших абитуриентов",
                                                                 replyMarkup: Keyboards.User.Enrollee.Admission.College.afterCollegeKeyboard
                                                                 );
                                                         }
@@ -602,11 +597,8 @@ namespace SPbPUBOT
                                                                                 messageId: db.Users.Find(chatsUserID).messageMenuID
                                                                                 );
 
-                                                                            using (FileStream stream = System.IO.File.OpenRead(Lists.pointsList[partsQuery[4]]))
-                                                                            {
-                                                                                InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, $"Баллы {partsQuery[4]}.pdf");
-                                                                                await botClient.SendDocumentAsync(chatID, inputOnlineFile);
-                                                                            }
+                                                                            string link = $"https://github.com/ratnikovv28/POLYTECHBOT/raw/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/%D0%91%D0%B0%D0%BB%D0%BB%D1%8B/{partsQuery[4]}.pdf";
+                                                                            await botClient.SendDocumentAsync(chatID, link);
 
                                                                             var messageID = await botClient.SendTextMessageAsync(
                                                                                 chatId: chatID,
@@ -642,11 +634,9 @@ namespace SPbPUBOT
                                                                     messageId: db.Users.Find(chatsUserID).messageMenuID
                                                                     );
 
-                                                                using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/Obrazovatelnye_programmy_bakalavriata_i_spetsialiteta.pdf"))
-                                                                {
-                                                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа бакалавриата и специалитета.pdf");
-                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
-                                                                }
+                                                                string docLink = "https://github.com/ratnikovv28/POLYTECHBOT/raw/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/Obrazovatelnye_programmy_bakalavriata_i_spetsialiteta.pdf";
+
+                                                                await botClient.SendDocumentAsync(chatID, docLink);
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
                                                                     chatId: chatID,
@@ -1133,11 +1123,9 @@ namespace SPbPUBOT
                                                                     messageId: db.Users.Find(chatsUserID).messageMenuID
                                                                     );
 
-                                                                using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/master_apply_the_list_of_areas_of_training.pdf"))
-                                                                {
-                                                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Общее количество бюджетных и контрактных мест для поступления в 2021 году.pdf");
-                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
-                                                                }
+                                                                string docLink = "https://github.com/ratnikovv28/POLYTECHBOT/raw/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/master_apply_the_list_of_areas_of_training.pdf";
+
+                                                                await botClient.SendDocumentAsync(chatID, docLink);
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
                                                                     chatId: chatID,
@@ -1159,11 +1147,9 @@ namespace SPbPUBOT
                                                                     messageId: db.Users.Find(chatsUserID).messageMenuID
                                                                     );
 
-                                                                using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/magistr2022.pdf"))
-                                                                {
-                                                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа магистра.pdf");
-                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
-                                                                }
+                                                                string docLink = "https://github.com/ratnikovv28/POLYTECHBOT/raw/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/magistr2022.pdf";
+
+                                                                await botClient.SendDocumentAsync(chatID, docLink);
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
                                                                     chatId: chatID,
@@ -1702,11 +1688,9 @@ namespace SPbPUBOT
                                                                     messageId: db.Users.Find(chatID).messageMenuID
                                                                     );
 
-                                                                using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/Obrazovatelnye_programmy_bakalavriata_i_spetsialiteta.pdf"))
-                                                                {
-                                                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа бакалавриата и специалитета.pdf");
-                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
-                                                                }
+                                                                string docLink = "https://github.com/ratnikovv28/POLYTECHBOT/raw/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/Obrazovatelnye_programmy_bakalavriata_i_spetsialiteta.pdf";
+
+                                                                await botClient.SendDocumentAsync(chatID, docLink);
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
                                                                     chatId: chatID,
@@ -1744,16 +1728,14 @@ namespace SPbPUBOT
                                                                     messageId: db.Users.Find(chatID).messageMenuID
                                                                     );
 
-                                                                using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/magistr2022.pdf"))
-                                                                {
-                                                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Образовательная программа магистра.pdf");
-                                                                    await botClient.SendDocumentAsync(chatID, inputOnlineFile);
-                                                                }
+                                                                string docLink = "https://github.com/ratnikovv28/POLYTECHBOT/raw/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/magistr2022.pdf";
+
+                                                                await botClient.SendDocumentAsync(chatID, docLink);
 
                                                                 var messageID = await botClient.SendTextMessageAsync(
                                                                     chatId: chatID,
                                                                     text: "Выберите удобное для вас представление",
-                                                                    replyMarkup: Keyboards.User.Enrollee.ChooseProfession.undergraduateKeyboard
+                                                                    replyMarkup: Keyboards.User.Enrollee.ChooseProfession.magistracyKeyboard
                                                                     );
                                                                 db.Users.Find(chatID).messageMenuID = messageID.MessageId;
                                                                 db.SaveChanges();
@@ -1801,11 +1783,9 @@ namespace SPbPUBOT
                                                         messageId: db.Users.Find(chatID).messageMenuID
                                                         );
 
-                                                    using (FileStream stream = System.IO.File.OpenRead("D:/Телеграм бот/SPbPUBOT/SPbPUBOT/Файлы/Политех.Нам нравится.pdf"))
-                                                    {
-                                                        InputOnlineFile inputOnlineFile = new InputOnlineFile(stream, "Про Политех.pdf");
-                                                        await botClient.SendDocumentAsync(chatID, inputOnlineFile);
-                                                    }
+                                                    string docLink = "https://github.com/ratnikovv28/POLYTECHBOT/blob/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B5%D1%85.%D0%9D%D0%B0%D0%BC%20%D0%BD%D1%80%D0%B0%D0%B2%D0%B8%D1%82%D1%81%D1%8F.pdf";
+
+                                                    await botClient.SendDocumentAsync(chatID, docLink);
 
                                                     var messageID = await botClient.SendTextMessageAsync(
                                                         chatId: chatID,
@@ -3286,7 +3266,7 @@ namespace SPbPUBOT
                         await botClient.EditMessageTextAsync(
                             chatId: chatID,
                             messageId: messID,
-                            text: "Выбери кем ты являешься",
+                            text: "Выбери кем ты являешься👀",
                             replyMarkup: Keyboards.User.chooseKeyboard
                             );
                     }
@@ -3312,7 +3292,7 @@ namespace SPbPUBOT
                         {
                             await botClient.SendTextMessageAsync(
                                 chatId: chatsMainID,
-                                text: "Привет, главный оператор! \nСписок доступных команд только что открылся, будь острожнее и не добавляй кого попало)))",
+                                text: "Привет, главный оператор!👋🏻 \nСписок доступных команд только что открылся, будь острожнее и не добавляй кого попало!",
                                 replyMarkup: Keyboards.MainOperator.basicKeyboard
                                 );
                         }
@@ -3337,7 +3317,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsMainID,
-                                        text: "Нет ни одного неосновного оператора"
+                                        text: "🤖 Нет ни одного неосновного оператора"
                                         );
                                 }
                                 else
@@ -3370,13 +3350,13 @@ namespace SPbPUBOT
 
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsMainID,
-                                        text: "Вы подключились к пользователю",
+                                        text: "🤖 Вы подключились к пользователю",
                                         replyMarkup: Keyboards.Operator.whileChattingKeyboard
                                         );
 
                                     await botClient.SendTextMessageAsync(
                                         chatId: userForHelp.UserID,
-                                        text: "К вам подключился оператор",
+                                        text: "🤖 К вам подключился оператор",
                                         replyMarkup: Keyboards.User.whileChattingKeyboard
                                         );
                                 }
@@ -3384,7 +3364,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsMainID,
-                                        text: "На данный момент помощь никому не нужна"
+                                        text: "🤖 На данный момент помощь никому не нужна"
                                         );
                                 }
                             }
@@ -3401,7 +3381,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsMainID,
-                                        text: "Неправильный формат ID пользователя"
+                                        text: "🤖 Неправильный формат ID пользователя"
                                         );
                                     break;
                                 }
@@ -3436,13 +3416,13 @@ namespace SPbPUBOT
                                             });
                                             await botClient.SendTextMessageAsync(
                                                 chatId: userID,
-                                                text: "Поздравляем, теперь Вы являетесь оператором!\n\n" +
+                                                text: "Поздравляем, теперь Вы являетесь оператором!🥳\n\n" +
                                                 "Пожалуйста, очистите историю сообщений в данном канале для корректной работы бота"
                                                 );
                                         }
                                         await botClient.SendTextMessageAsync(
                                             chatId: chatsMainID,
-                                            text: "Оператор добавлен"
+                                            text: "🤖 Оператор добавлен"
                                             );
                                         db.SaveChanges();
                                     }
@@ -3450,7 +3430,7 @@ namespace SPbPUBOT
                                     {
                                         await botClient.SendTextMessageAsync(
                                             chatId: chatsMainID,
-                                            text: "Данный пользователь уже является оператором"
+                                            text: "🤖 Данный пользователь уже является оператором"
                                             );
                                     }
                                 }
@@ -3493,7 +3473,7 @@ namespace SPbPUBOT
 
                                 var messageMenu = await botClient.SendTextMessageAsync(
                                     chatId: oper.UserID,
-                                    text: "Выбери кем ты являешься",
+                                    text: "Выбери кем ты являешься👀",
                                     replyMarkup: Keyboards.User.chooseKeyboard
                                     );
 
@@ -3555,7 +3535,7 @@ namespace SPbPUBOT
 
                             await botClient.SendTextMessageAsync(
                                 chatId: chatsOperatorID,
-                                text: "Привет, оператор! \nСписок доступных команд только что открылся, будь вежлив!",
+                                text: "Привет, оператор!👋🏻 \nТебе доступна одна команда - помочь, пожалуйста, будь вежлив!",
                                 replyMarkup: Keyboards.Operator.mainKeyboard
                                 );
                         }
@@ -3574,13 +3554,13 @@ namespace SPbPUBOT
 
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsOperatorID,
-                                        text: "Вы подключились к пользователю",
+                                        text: "🤖 Вы подключились к пользователю",
                                         replyMarkup: Keyboards.Operator.whileChattingKeyboard
                                         );
 
                                     await botClient.SendTextMessageAsync(
                                         chatId: userForHelp.UserID,
-                                        text: "К вам подключился оператор",
+                                        text: "🤖 К вам подключился оператор",
                                         replyMarkup: Keyboards.User.whileChattingKeyboard
                                         );
                                 }
@@ -3588,7 +3568,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsOperatorID,
-                                        text: "На данный момент помощь никому не нужна"
+                                        text: "🤖 На данный момент помощь никому не нужна"
                                         );
                                 }
                             }
@@ -3610,7 +3590,7 @@ namespace SPbPUBOT
 
                                 await botClient.SendTextMessageAsync(
                                     chatId: oper.UserID,
-                                    text: "Оператор окончил диалог",
+                                    text: "🤖 Оператор окончил диалог",
                                     replyMarkup: new ReplyKeyboardRemove()
                                     {
                                         Selective = true
@@ -3624,7 +3604,7 @@ namespace SPbPUBOT
 
                                 var messageMenu = await botClient.SendTextMessageAsync(
                                     chatId: oper.UserID,
-                                    text: "Выбери кем ты являешься",
+                                    text: "Выбери кем ты являешься👀",
                                     replyMarkup: Keyboards.User.chooseKeyboard
                                     );
 
@@ -3635,7 +3615,7 @@ namespace SPbPUBOT
 
                                 await botClient.SendTextMessageAsync(
                                     chatId: chatsOperatorID,
-                                    text: "Диалог закончен",
+                                    text: "🤖 Диалог закончен",
                                     replyMarkup: Keyboards.Operator.mainKeyboard
                                     );
                             }
@@ -3730,7 +3710,7 @@ namespace SPbPUBOT
 
                                 var messageMenu = await botClient.SendTextMessageAsync(
                                     chatId: chatsUserID,
-                                    text: "Выбери кем ты являешься",
+                                    text: "Выбери кем ты являешься👀",
                                     replyMarkup: Keyboards.User.chooseKeyboard
                                     );
 
@@ -3781,7 +3761,7 @@ namespace SPbPUBOT
 
                             var messageMenu = await botClient.SendTextMessageAsync(
                                 chatId: chatsUserID,
-                                text: "Выбери кем ты являешься",
+                                text: "Выбери кем ты являешься👀",
                                 replyMarkup: Keyboards.User.chooseKeyboard
                                 );
 
@@ -3794,10 +3774,32 @@ namespace SPbPUBOT
                         break;
                     case "#ямыартемсухов":
                         {
-                            await botClient.SendTextMessageAsync(
+                            await botClient.DeleteMessageAsync( // удаление сообщения /start
                                 chatId: chatsUserID,
-                                text: "О, ты тоже в этом движении?🥵"
+                                messageId: message.MessageId
                                 );
+
+                            using (ApplicationContext db = new ApplicationContext())
+                            {
+                                await botClient.DeleteMessageAsync(
+                                    chatId: chatsUserID,
+                                    messageId: db.Users.Find(chatsUserID).messageMenuID
+                                    );
+
+                                await botClient.SendTextMessageAsync(
+                                    chatId: chatsUserID,
+                                    text: "О, ты тоже в этом движении?🥵"
+                                    );
+
+                                var messageMenu = await botClient.SendTextMessageAsync(
+                                 chatId: chatsUserID,
+                                 text: "Выбери кем ты являешься👀",
+                                 replyMarkup: Keyboards.User.chooseKeyboard
+                                 );
+
+                                db.Users.Find(chatsUserID).messageMenuID = messageMenu.MessageId;
+                                db.SaveChanges();
+                            }
                         }
                         break;
                     default:

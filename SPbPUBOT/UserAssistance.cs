@@ -5,7 +5,9 @@ namespace SPbPUBOT
 {
     public class UserAssistance
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        public int BidID { get; set; }
+
         public long UserID { get; set; }
 
         public string Username { get; set; }

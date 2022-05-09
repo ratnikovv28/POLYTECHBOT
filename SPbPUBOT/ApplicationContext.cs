@@ -17,7 +17,7 @@ namespace SPbPUBOT
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=mssql-77678-0.cloudclusters.net,12502;Initial Catalog=polytemporaryDB;Persist Security Info=True;User ID=MainOpeartor;Password=Mainoper0");
+            optionsBuilder.UseSqlServer("Data Source=mssql-78319-0.cloudclusters.net,19858;Initial Catalog=polytemporaryDB;User ID=Mainoper0;Password=Mainoper0;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
     }
 }

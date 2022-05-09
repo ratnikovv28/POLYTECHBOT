@@ -73,19 +73,19 @@ namespace SPbPUBOT
                 {
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Полезные ссылки", "студент|ссылки|ссылки"),
+                        InlineKeyboardButton.WithCallbackData("🌐Полезные ссылки🌐", "студент|ссылки|ссылки"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Расписание", "студент|расписание"),
+                        InlineKeyboardButton.WithCallbackData("📆Расписание📆", "студент|расписание"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Карта Политеха", "студент|карта|карта"),
+                        InlineKeyboardButton.WithCallbackData("🗺Карта Политеха🗺", "студент|карта|карта"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Часто задаваемые вопросы", "студент|чзв|чзв"),
+                        InlineKeyboardButton.WithCallbackData("📝Часто задаваемые вопросы📝", "студент|чзв|чзв"),
                     },
                     new[]
                     {
@@ -457,9 +457,9 @@ namespace SPbPUBOT
                         },
                         new[]
                         {
-                            InlineKeyboardButton.WithCallbackData("1️⃣8️⃣", "абитур|карта|общежития|18"),
-                            InlineKeyboardButton.WithCallbackData("1️⃣9️⃣", "абитур|карта|общежития|19"),
-                            InlineKeyboardButton.WithCallbackData("2️⃣0️⃣", "абитур|карта|общежития|20"),
+                            InlineKeyboardButton.WithCallbackData("1️⃣8️⃣", "студент|карта|общежития|18"),
+                            InlineKeyboardButton.WithCallbackData("1️⃣9️⃣", "студент|карта|общежития|19"),
+                            InlineKeyboardButton.WithCallbackData("2️⃣0️⃣", "студент|карта|общежития|20"),
                         },
                         new[]
                         {
@@ -535,23 +535,23 @@ namespace SPbPUBOT
                 {
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("О поступлении", "абитур|поступ|поступ"),
+                        InlineKeyboardButton.WithCallbackData("🎓О поступлении🎓", "абитур|поступ|поступ"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Выбрать профессию", "абитур|выбратьпроф|выбратьпроф"),
+                        InlineKeyboardButton.WithCallbackData("👤Выбрать профессию👤", "абитур|выбратьпроф|выбратьпроф"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Познакомиться с университетом", "абитур|знаком|знаком"),
+                        InlineKeyboardButton.WithCallbackData("📚Познакомиться с университетом📚", "абитур|знаком|знаком"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Мероприятия и курсы для абитуриентов", "абитур|курсы|курсы"),
+                        InlineKeyboardButton.WithCallbackData("🗣Мероприятия и курсы🗣", "абитур|курсы|курсы"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Часто задаваемые вопросы", "абитур|чзв|чзв"),
+                        InlineKeyboardButton.WithCallbackData("📝Часто задаваемые вопросы📝", "абитур|чзв|чзв"),
                     },
                     new[]
                     {
@@ -590,7 +590,7 @@ namespace SPbPUBOT
                         },
                         new[]
                         {
-                            InlineKeyboardButton.WithCallbackData("Назад", "назад"),
+                            InlineKeyboardButton.WithCallbackData("Назад", "абитур|назад"),
                         },
                     });
 
