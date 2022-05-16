@@ -15,9 +15,9 @@ namespace SPbPUBOT
             Database.EnsureCreated();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
-            optionsBuilder.UseSqlServer("Data Source=mssql-78319-0.cloudclusters.net,19858;Initial Catalog=polytemporaryDB;User ID=Mainoper0;Password=Mainoper0;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer("Data Source=mssql-78666-0.cloudclusters.net,19838;Initial Catalog=polytemporaryDB;User ID=Mainoper;Password=Mainoper0;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
     }
 }

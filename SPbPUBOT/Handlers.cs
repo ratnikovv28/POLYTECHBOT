@@ -1284,7 +1284,7 @@ namespace SPbPUBOT
 
                                                                                 await botClient.SendTextMessageAsync(
                                                                                     chatId: chatID,
-                                                                                    text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                                    text: "🤖 Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
                                                                                     "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                                     );
                                                                             }
@@ -1292,7 +1292,7 @@ namespace SPbPUBOT
                                                                             {
                                                                                 await botClient.SendTextMessageAsync(
                                                                                     chatId: chatID,
-                                                                                    text: "Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                                    text: "🤖 Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
                                                                                     "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                                     );
                                                                             }
@@ -1783,7 +1783,7 @@ namespace SPbPUBOT
                                                         messageId: db.Users.Find(chatID).messageMenuID
                                                         );
 
-                                                    string docLink = "https://github.com/ratnikovv28/POLYTECHBOT/blob/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B5%D1%85.%D0%9D%D0%B0%D0%BC%20%D0%BD%D1%80%D0%B0%D0%B2%D0%B8%D1%82%D1%81%D1%8F.pdf";
+                                                    string docLink = "https://github.com/ratnikovv28/POLYTECHBOT/raw/master/SPbPUBOT/%D0%A4%D0%B0%D0%B9%D0%BB%D1%8B/Presentaion.pdf";
 
                                                     await botClient.SendDocumentAsync(chatID, docLink);
 
@@ -2667,7 +2667,7 @@ namespace SPbPUBOT
 
                                                                     await botClient.SendTextMessageAsync(
                                                                         chatId: chatID,
-                                                                        text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                        text: "🤖 Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
                                                                         "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                         );
                                                                 }
@@ -2675,7 +2675,7 @@ namespace SPbPUBOT
                                                                 {
                                                                     await botClient.SendTextMessageAsync(
                                                                         chatId: chatID,
-                                                                        text: "Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                        text: "🤖 Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
                                                                         "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                         );
                                                                 }
@@ -2712,7 +2712,7 @@ namespace SPbPUBOT
                                     await botClient.EditMessageTextAsync(
                                        chatId: chatID,
                                        messageId: messID,
-                                       text: "Выбери одну из категорий, чтобы узнать больше",
+                                       text: "Студент, выбери интересующий раздел",
                                        replyMarkup: Keyboards.User.Student.startKeyboard
                                        );
                                 }
@@ -2973,7 +2973,7 @@ namespace SPbPUBOT
 
                                                                     await botClient.SendTextMessageAsync(
                                                                         chatId: chatID,
-                                                                        text: "Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                        text: "🤖 Вы добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
                                                                         "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                         );
                                                                 }
@@ -2981,7 +2981,7 @@ namespace SPbPUBOT
                                                                 {
                                                                     await botClient.SendTextMessageAsync(
                                                                         chatId: chatID,
-                                                                        text: "Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
+                                                                        text: "🤖 Вы уже добавлены в очередь ожиданий, к вам подключится первый освободившийся оператора\n\n" +
                                                                         "Пожалуйста, дождитесь подключения оператора и потом задавайте вопрос"
                                                                         );
                                                                 }
@@ -3252,8 +3252,13 @@ namespace SPbPUBOT
 
                                         await botClient.SendTextMessageAsync(
                                             chatId: operID,
-                                            text: "Вы больше не являетесь оператором"
+                                            text: "Вы больше не являетесь оператором",
+                                            replyMarkup: new ReplyKeyboardRemove()
+                                            {
+                                                Selective = true
+                                            }
                                             );
+
                                         db.SaveChanges();
                                     }
                                 }
@@ -3317,7 +3322,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsMainID,
-                                        text: "🤖 Нет ни одного неосновного оператора"
+                                        text: "🤖Нет ни одного неосновного оператора"
                                         );
                                 }
                                 else
@@ -3350,13 +3355,13 @@ namespace SPbPUBOT
 
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsMainID,
-                                        text: "🤖 Вы подключились к пользователю",
+                                        text: "🤖Вы подключились к пользователю",
                                         replyMarkup: Keyboards.Operator.whileChattingKeyboard
                                         );
 
                                     await botClient.SendTextMessageAsync(
                                         chatId: userForHelp.UserID,
-                                        text: "🤖 К вам подключился оператор",
+                                        text: "🤖К вам подключился оператор",
                                         replyMarkup: Keyboards.User.whileChattingKeyboard
                                         );
                                 }
@@ -3364,7 +3369,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsMainID,
-                                        text: "🤖 На данный момент помощь никому не нужна"
+                                        text: "🤖На данный момент помощь никому не нужна"
                                         );
                                 }
                             }
@@ -3381,7 +3386,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.SendTextMessageAsync(
                                         chatId: chatsMainID,
-                                        text: "🤖 Неправильный формат ID пользователя"
+                                        text: "🤖Неправильный формат ID пользователя"
                                         );
                                     break;
                                 }
@@ -3402,7 +3407,7 @@ namespace SPbPUBOT
                                             User user = db.Users.Find(userID);
                                             db.Users.Remove(user);
 
-                                            if (db.UserAssistance.Find(userID) != null)
+                                            if (db.UserAssistance.FirstOrDefault(k => k.UserID == userID) != null)
                                             {
                                                 UserAssistance userForHelp = db.UserAssistance.Find(userID);
                                                 db.UserAssistance.Remove(userForHelp);
@@ -3422,7 +3427,7 @@ namespace SPbPUBOT
                                         }
                                         await botClient.SendTextMessageAsync(
                                             chatId: chatsMainID,
-                                            text: "🤖 Оператор добавлен"
+                                            text: "🤖Оператор добавлен"
                                             );
                                         db.SaveChanges();
                                     }
@@ -3430,7 +3435,7 @@ namespace SPbPUBOT
                                     {
                                         await botClient.SendTextMessageAsync(
                                             chatId: chatsMainID,
-                                            text: "🤖 Данный пользователь уже является оператором"
+                                            text: "🤖Данный пользователь уже является оператором"
                                             );
                                     }
                                 }
@@ -3454,12 +3459,12 @@ namespace SPbPUBOT
                         {
                             using (ApplicationContext db = new ApplicationContext())
                             {
-                                UserAssistance user = db.UserAssistance.Find(oper.UserID);
+                                UserAssistance user = db.UserAssistance.First(k => k.UserID == oper.UserID);
                                 db.UserAssistance.Remove(user);
 
                                 await botClient.SendTextMessageAsync(
                                     chatId: oper.UserID,
-                                    text: "Оператор окончил диалог",
+                                    text: "🤖Оператор окончил диалог",
                                     replyMarkup: new ReplyKeyboardRemove()
                                     {
                                         Selective = true
@@ -3484,7 +3489,7 @@ namespace SPbPUBOT
 
                                 await botClient.SendTextMessageAsync(
                                     chatId: chatsMainID,
-                                    text: "Диалог закончен",
+                                    text: "🤖Диалог закончен",
                                     replyMarkup: Keyboards.MainOperator.basicKeyboard
                                     );
                             }
@@ -3639,12 +3644,6 @@ namespace SPbPUBOT
             User user;
             UserAssistance userInChat;
 
-
-            //await botClient.SendChatActionAsync( // анимация "Печатать", пока получается информация из бд
-            //        chatId: chatsUserID,
-            //        chatAction: ChatAction.Typing
-            //        );
-
             using (ApplicationContext db = new ApplicationContext())
             {
                 userInChat = db.UserAssistance.FirstOrDefault(k => k.UserID == chatsUserID);
@@ -3679,7 +3678,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.SendTextMessageAsync(
                                         chatId: userInChat.OperatorID,
-                                        text: "Пользователь окончил диалог",
+                                        text: "🤖 Пользователь окончил диалог",
                                         replyMarkup: Keyboards.Operator.mainKeyboard
                                         );
                                 }
@@ -3687,7 +3686,7 @@ namespace SPbPUBOT
                                 {
                                     await botClient.SendTextMessageAsync(
                                         chatId: userInChat.OperatorID,
-                                        text: "Пользователь окончил диалог",
+                                        text: "🤖 Пользователь окончил диалог",
                                         replyMarkup: Keyboards.MainOperator.basicKeyboard
                                         );
                                 }
@@ -3696,7 +3695,7 @@ namespace SPbPUBOT
 
                                 await botClient.SendTextMessageAsync(
                                     chatId: chatsUserID,
-                                    text: "Диалог закончен",
+                                    text: "🤖 Диалог закончен",
                                     replyMarkup: new ReplyKeyboardRemove()
                                     {
                                         Selective = true

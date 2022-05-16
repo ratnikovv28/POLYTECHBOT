@@ -52,8 +52,8 @@ namespace SPbPUBOT
             {
                 new[]
                 {
-                    InlineKeyboardButton.WithCallbackData("Абитуриент", "абитур|абитур"),
-                    InlineKeyboardButton.WithCallbackData("Студент", "студент|студент"),
+                    InlineKeyboardButton.WithCallbackData("🅰️битуриент", "абитур|абитур"),
+                    InlineKeyboardButton.WithCallbackData("💲тудент", "студент|студент"),
                 },
             });
 
@@ -73,19 +73,19 @@ namespace SPbPUBOT
                 {
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("🌐Полезные ссылки🌐", "студент|ссылки|ссылки"),
+                        InlineKeyboardButton.WithCallbackData("🌐Полезные ссылки", "студент|ссылки|ссылки"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("📆Расписание📆", "студент|расписание"),
+                        InlineKeyboardButton.WithCallbackData("📆Расписание", "студент|расписание"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("🗺Карта Политеха🗺", "студент|карта|карта"),
+                        InlineKeyboardButton.WithCallbackData("🗺Карта Политеха", "студент|карта|карта"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("📝Часто задаваемые вопросы📝", "студент|чзв|чзв"),
+                        InlineKeyboardButton.WithCallbackData("📝Часто задаваемые вопросы", "студент|чзв|чзв"),
                     },
                     new[]
                     {
@@ -472,27 +472,27 @@ namespace SPbPUBOT
                     {
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("🎓Главный учебный корпус🎓", "студент|карта|корпуса|гз"),
+                            InlineKeyboardButton.WithCallbackData("🎓Главный учебный корпус", "студент|карта|корпуса|гз"),
                         },
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("⚽️Спортивный комплекс⚽️", "студент|карта|корпуса|спорт"),
+                            InlineKeyboardButton.WithCallbackData("⚽️Спортивный комплекс", "студент|карта|корпуса|спорт"),
                         },
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("🔬Лабораторный корпус🔬", "студент|карта|корпуса|лаб"),
+                            InlineKeyboardButton.WithCallbackData("🔬Лабораторный корпус", "студент|карта|корпуса|лаб"),
                         },
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("🧪Химический корпус🧪", "студент|карта|корпуса|хим"),
+                            InlineKeyboardButton.WithCallbackData("🧪Химический корпус", "студент|карта|корпуса|хим"),
                         },
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("🗼Гидробашня🗼", "студент|карта|корпуса|башня"),
+                            InlineKeyboardButton.WithCallbackData("🗼Гидробашня", "студент|карта|корпуса|башня"),
                         },
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("⚙️Механический корпуc⚙️", "студент|карта|корпуса|мех"),
+                            InlineKeyboardButton.WithCallbackData("⚙️Механический корпуc", "студент|карта|корпуса|мех"),
                         },
                         new []
                         {
@@ -535,23 +535,23 @@ namespace SPbPUBOT
                 {
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("🎓О поступлении🎓", "абитур|поступ|поступ"),
+                        InlineKeyboardButton.WithCallbackData("🎓О поступлении", "абитур|поступ|поступ"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("👤Выбрать профессию👤", "абитур|выбратьпроф|выбратьпроф"),
+                        InlineKeyboardButton.WithCallbackData("👤Выбрать профессию", "абитур|выбратьпроф|выбратьпроф"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("📚Познакомиться с университетом📚", "абитур|знаком|знаком"),
+                        InlineKeyboardButton.WithCallbackData("📚Познакомиться с университетом", "абитур|знаком|знаком"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("🗣Мероприятия и курсы🗣", "абитур|курсы|курсы"),
+                        InlineKeyboardButton.WithCallbackData("🗣Мероприятия и курсы", "абитур|курсы|курсы"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("📝Часто задаваемые вопросы📝", "абитур|чзв|чзв"),
+                        InlineKeyboardButton.WithCallbackData("📝Часто задаваемые вопросы ", "абитур|чзв|чзв"),
                     },
                     new[]
                     {
@@ -2049,7 +2049,7 @@ namespace SPbPUBOT
                         },
                         new[]
                         {
-                             InlineKeyboardButton.WithCallbackData("Назад", "назад"),
+                             InlineKeyboardButton.WithCallbackData("Назад", "абитур|курсы|назад"),
                         },
                         });
 
