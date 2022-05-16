@@ -427,7 +427,7 @@ namespace SPbPUBOT
                                                                         await botClient.EditMessageTextAsync(
                                                                             chatId: chatID,
                                                                             messageId: messID,
-                                                                            text: "Грацуем!",
+                                                                            text: "Поздравляем!🥳",
                                                                             replyMarkup: Keyboards.User.Enrollee.Admission.School.OlypmiadMan.olympiadManKeyboard
                                                                             );
                                                                     }
@@ -3419,6 +3419,12 @@ namespace SPbPUBOT
                                                 isMain = false,
                                                 Username = user.Username
                                             });
+
+                                            await botClient.DeleteMessageAsync(
+                                                chatId: userID,
+                                                messageId: user.messageMenuID
+                                                );
+
                                             await botClient.SendTextMessageAsync(
                                                 chatId: userID,
                                                 text: "Поздравляем, теперь Вы являетесь оператором!🥳\n\n" +
