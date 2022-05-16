@@ -2249,7 +2249,7 @@ namespace SPbPUBOT
                                                                         await botClient.EditMessageTextAsync(
                                                                             chatId: chatID,
                                                                             messageId: messID,
-                                                                            text: "Грацуем!",
+                                                                            text: "Поздравляем!🥳",
                                                                             replyMarkup: Keyboards.User.Enrollee.EventsCourse.Olympiad.olympiadManKeyboard
                                                                             );
                                                                     }
