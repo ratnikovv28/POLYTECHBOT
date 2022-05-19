@@ -52,8 +52,8 @@ namespace SPbPUBOT
             {
                 new[]
                 {
-                    InlineKeyboardButton.WithCallbackData("🅰️битуриент", "абитур|абитур"),
-                    InlineKeyboardButton.WithCallbackData("💲тудент", "студент|студент"),
+                    InlineKeyboardButton.WithCallbackData("Абитуриент", "абитур|абитур"),
+                    InlineKeyboardButton.WithCallbackData("Студент", "студент|студент"),
                 },
             });
 
